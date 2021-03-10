@@ -1,11 +1,12 @@
 import React from 'react';
-import { PageProps } from 'gatsby';
+import { graphql, PageProps } from 'gatsby';
 import { Link } from 'gatsby-theme-material-ui';
 import { useI18next } from 'gatsby-plugin-react-i18next';
 import { Container, Typography, Grid, Card, CardContent, Link as ELink } from '@material-ui/core';
+import { PrivacyPageQuery } from '../types';
 import { Layout } from '../components';
 
-const privacy: React.FC<PageProps> = () => {
+const privacy: React.FC<PageProps<PrivacyPageQuery>> = () => {
   const { t } = useI18next();
   return (
     <Layout cookieAlertShow={false}>
@@ -40,3 +41,18 @@ const privacy: React.FC<PageProps> = () => {
 };
 
 export default privacy;
+
+export const query = graphql`
+  query PrivacyPage($language: String!) {
+    # 原稿を取得する
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+    }
+  }
+`;

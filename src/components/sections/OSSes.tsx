@@ -1,7 +1,7 @@
 import React from 'react';
 import parse from 'html-react-parser';
 import { graphql, useStaticQuery } from 'gatsby';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { useI18next } from 'gatsby-plugin-react-i18next';
 import {
   makeStyles,
@@ -59,12 +59,7 @@ export const OSSes: React.FC = () => {
                 }
                 localFile {
                   childImageSharp {
-                    fluid {
-                      sizes
-                      src
-                      srcSet
-                      aspectRatio
-                    }
+                    gatsbyImageData
                   }
                 }
               }
@@ -97,9 +92,9 @@ export const OSSes: React.FC = () => {
                   target="_blank"
                 >
                   <CardMedia>
-                    {node?.image?.localFile?.childImageSharp?.fluid && (
-                      <Img
-                        fluid={node.image.localFile.childImageSharp.fluid}
+                    {node?.image?.localFile?.childImageSharp?.gatsbyImageData && (
+                      <GatsbyImage
+                        image={node.image.localFile.childImageSharp.gatsbyImageData}
                         alt={node.name ?? ''}
                         className={classes.cardMedia}
                       />

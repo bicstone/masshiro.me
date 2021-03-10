@@ -15,6 +15,9 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     minHeight: '100vh',
     cursor: 'default',
+    backgroundImage: `url(${require('./background.svg')})`,
+    backgroundSize: '400px 400px',
+    backgroundRepeat: 'repeat',
   },
   main: {
     marginTop: theme.spacing(8),

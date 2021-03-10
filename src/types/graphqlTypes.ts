@@ -62,11 +62,8 @@ export type ContentfulAsset = ContentfulReference & Node & {
   sys?: Maybe<ContentfulAssetSys>;
   localFile?: Maybe<File>;
   fixed?: Maybe<ContentfulFixed>;
-  /** @deprecated Resolutions was deprecated in Gatsby v2. It's been renamed to "fixed" https://example.com/write-docs-and-fix-this-example-link */
-  resolutions?: Maybe<ContentfulResolutions>;
   fluid?: Maybe<ContentfulFluid>;
-  /** @deprecated Sizes was deprecated in Gatsby v2. It's been renamed to "fluid" https://example.com/write-docs-and-fix-this-example-link */
-  sizes?: Maybe<ContentfulSizes>;
+  gatsbyImageData?: Maybe<Scalars['JSON']>;
   resize?: Maybe<ContentfulResize>;
   parent?: Maybe<Node>;
   children: Array<Node>;
@@ -102,17 +99,6 @@ export type ContentfulAssetFixedArgs = {
 };
 
 
-export type ContentfulAssetResolutionsArgs = {
-  width?: Maybe<Scalars['Int']>;
-  height?: Maybe<Scalars['Int']>;
-  quality?: Maybe<Scalars['Int']>;
-  toFormat?: Maybe<ContentfulImageFormat>;
-  resizingBehavior?: Maybe<ImageResizingBehavior>;
-  cropFocus?: Maybe<ContentfulImageCropFocus>;
-  background?: Maybe<Scalars['String']>;
-};
-
-
 export type ContentfulAssetFluidArgs = {
   maxWidth?: Maybe<Scalars['Int']>;
   maxHeight?: Maybe<Scalars['Int']>;
@@ -125,15 +111,21 @@ export type ContentfulAssetFluidArgs = {
 };
 
 
-export type ContentfulAssetSizesArgs = {
-  maxWidth?: Maybe<Scalars['Int']>;
-  maxHeight?: Maybe<Scalars['Int']>;
-  quality?: Maybe<Scalars['Int']>;
-  toFormat?: Maybe<ContentfulImageFormat>;
+export type ContentfulAssetGatsbyImageDataArgs = {
+  layout?: Maybe<GatsbyImageLayout>;
+  width?: Maybe<Scalars['Int']>;
+  height?: Maybe<Scalars['Int']>;
+  aspectRatio?: Maybe<Scalars['Float']>;
+  placeholder?: Maybe<GatsbyImagePlaceholder>;
+  formats?: Maybe<Array<Maybe<ContentfulImageFormat>>>;
+  outputPixelDensities?: Maybe<Array<Maybe<Scalars['Float']>>>;
+  breakpoints?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  sizes?: Maybe<Scalars['String']>;
+  backgroundColor?: Maybe<Scalars['String']>;
+  jpegProgressive?: Maybe<Scalars['Boolean']>;
   resizingBehavior?: Maybe<ImageResizingBehavior>;
   cropFocus?: Maybe<ContentfulImageCropFocus>;
-  background?: Maybe<Scalars['String']>;
-  sizes?: Maybe<Scalars['String']>;
+  quality?: Maybe<Scalars['Int']>;
 };
 
 
@@ -228,6 +220,7 @@ export enum ContentfulAssetFieldsEnum {
   localFile___blksize = 'localFile___blksize',
   localFile___blocks = 'localFile___blocks',
   localFile___url = 'localFile___url',
+  localFile___publicURL = 'localFile___publicURL',
   localFile___childrenImageSharp = 'localFile___childrenImageSharp',
   localFile___childrenImageSharp___fixed___base64 = 'localFile___childrenImageSharp___fixed___base64',
   localFile___childrenImageSharp___fixed___tracedSVG = 'localFile___childrenImageSharp___fixed___tracedSVG',
@@ -239,16 +232,6 @@ export enum ContentfulAssetFieldsEnum {
   localFile___childrenImageSharp___fixed___srcWebp = 'localFile___childrenImageSharp___fixed___srcWebp',
   localFile___childrenImageSharp___fixed___srcSetWebp = 'localFile___childrenImageSharp___fixed___srcSetWebp',
   localFile___childrenImageSharp___fixed___originalName = 'localFile___childrenImageSharp___fixed___originalName',
-  localFile___childrenImageSharp___resolutions___base64 = 'localFile___childrenImageSharp___resolutions___base64',
-  localFile___childrenImageSharp___resolutions___tracedSVG = 'localFile___childrenImageSharp___resolutions___tracedSVG',
-  localFile___childrenImageSharp___resolutions___aspectRatio = 'localFile___childrenImageSharp___resolutions___aspectRatio',
-  localFile___childrenImageSharp___resolutions___width = 'localFile___childrenImageSharp___resolutions___width',
-  localFile___childrenImageSharp___resolutions___height = 'localFile___childrenImageSharp___resolutions___height',
-  localFile___childrenImageSharp___resolutions___src = 'localFile___childrenImageSharp___resolutions___src',
-  localFile___childrenImageSharp___resolutions___srcSet = 'localFile___childrenImageSharp___resolutions___srcSet',
-  localFile___childrenImageSharp___resolutions___srcWebp = 'localFile___childrenImageSharp___resolutions___srcWebp',
-  localFile___childrenImageSharp___resolutions___srcSetWebp = 'localFile___childrenImageSharp___resolutions___srcSetWebp',
-  localFile___childrenImageSharp___resolutions___originalName = 'localFile___childrenImageSharp___resolutions___originalName',
   localFile___childrenImageSharp___fluid___base64 = 'localFile___childrenImageSharp___fluid___base64',
   localFile___childrenImageSharp___fluid___tracedSVG = 'localFile___childrenImageSharp___fluid___tracedSVG',
   localFile___childrenImageSharp___fluid___aspectRatio = 'localFile___childrenImageSharp___fluid___aspectRatio',
@@ -261,18 +244,6 @@ export enum ContentfulAssetFieldsEnum {
   localFile___childrenImageSharp___fluid___originalName = 'localFile___childrenImageSharp___fluid___originalName',
   localFile___childrenImageSharp___fluid___presentationWidth = 'localFile___childrenImageSharp___fluid___presentationWidth',
   localFile___childrenImageSharp___fluid___presentationHeight = 'localFile___childrenImageSharp___fluid___presentationHeight',
-  localFile___childrenImageSharp___sizes___base64 = 'localFile___childrenImageSharp___sizes___base64',
-  localFile___childrenImageSharp___sizes___tracedSVG = 'localFile___childrenImageSharp___sizes___tracedSVG',
-  localFile___childrenImageSharp___sizes___aspectRatio = 'localFile___childrenImageSharp___sizes___aspectRatio',
-  localFile___childrenImageSharp___sizes___src = 'localFile___childrenImageSharp___sizes___src',
-  localFile___childrenImageSharp___sizes___srcSet = 'localFile___childrenImageSharp___sizes___srcSet',
-  localFile___childrenImageSharp___sizes___srcWebp = 'localFile___childrenImageSharp___sizes___srcWebp',
-  localFile___childrenImageSharp___sizes___srcSetWebp = 'localFile___childrenImageSharp___sizes___srcSetWebp',
-  localFile___childrenImageSharp___sizes___sizes = 'localFile___childrenImageSharp___sizes___sizes',
-  localFile___childrenImageSharp___sizes___originalImg = 'localFile___childrenImageSharp___sizes___originalImg',
-  localFile___childrenImageSharp___sizes___originalName = 'localFile___childrenImageSharp___sizes___originalName',
-  localFile___childrenImageSharp___sizes___presentationWidth = 'localFile___childrenImageSharp___sizes___presentationWidth',
-  localFile___childrenImageSharp___sizes___presentationHeight = 'localFile___childrenImageSharp___sizes___presentationHeight',
   localFile___childrenImageSharp___gatsbyImageData = 'localFile___childrenImageSharp___gatsbyImageData',
   localFile___childrenImageSharp___original___width = 'localFile___childrenImageSharp___original___width',
   localFile___childrenImageSharp___original___height = 'localFile___childrenImageSharp___original___height',
@@ -307,16 +278,6 @@ export enum ContentfulAssetFieldsEnum {
   localFile___childImageSharp___fixed___srcWebp = 'localFile___childImageSharp___fixed___srcWebp',
   localFile___childImageSharp___fixed___srcSetWebp = 'localFile___childImageSharp___fixed___srcSetWebp',
   localFile___childImageSharp___fixed___originalName = 'localFile___childImageSharp___fixed___originalName',
-  localFile___childImageSharp___resolutions___base64 = 'localFile___childImageSharp___resolutions___base64',
-  localFile___childImageSharp___resolutions___tracedSVG = 'localFile___childImageSharp___resolutions___tracedSVG',
-  localFile___childImageSharp___resolutions___aspectRatio = 'localFile___childImageSharp___resolutions___aspectRatio',
-  localFile___childImageSharp___resolutions___width = 'localFile___childImageSharp___resolutions___width',
-  localFile___childImageSharp___resolutions___height = 'localFile___childImageSharp___resolutions___height',
-  localFile___childImageSharp___resolutions___src = 'localFile___childImageSharp___resolutions___src',
-  localFile___childImageSharp___resolutions___srcSet = 'localFile___childImageSharp___resolutions___srcSet',
-  localFile___childImageSharp___resolutions___srcWebp = 'localFile___childImageSharp___resolutions___srcWebp',
-  localFile___childImageSharp___resolutions___srcSetWebp = 'localFile___childImageSharp___resolutions___srcSetWebp',
-  localFile___childImageSharp___resolutions___originalName = 'localFile___childImageSharp___resolutions___originalName',
   localFile___childImageSharp___fluid___base64 = 'localFile___childImageSharp___fluid___base64',
   localFile___childImageSharp___fluid___tracedSVG = 'localFile___childImageSharp___fluid___tracedSVG',
   localFile___childImageSharp___fluid___aspectRatio = 'localFile___childImageSharp___fluid___aspectRatio',
@@ -329,18 +290,6 @@ export enum ContentfulAssetFieldsEnum {
   localFile___childImageSharp___fluid___originalName = 'localFile___childImageSharp___fluid___originalName',
   localFile___childImageSharp___fluid___presentationWidth = 'localFile___childImageSharp___fluid___presentationWidth',
   localFile___childImageSharp___fluid___presentationHeight = 'localFile___childImageSharp___fluid___presentationHeight',
-  localFile___childImageSharp___sizes___base64 = 'localFile___childImageSharp___sizes___base64',
-  localFile___childImageSharp___sizes___tracedSVG = 'localFile___childImageSharp___sizes___tracedSVG',
-  localFile___childImageSharp___sizes___aspectRatio = 'localFile___childImageSharp___sizes___aspectRatio',
-  localFile___childImageSharp___sizes___src = 'localFile___childImageSharp___sizes___src',
-  localFile___childImageSharp___sizes___srcSet = 'localFile___childImageSharp___sizes___srcSet',
-  localFile___childImageSharp___sizes___srcWebp = 'localFile___childImageSharp___sizes___srcWebp',
-  localFile___childImageSharp___sizes___srcSetWebp = 'localFile___childImageSharp___sizes___srcSetWebp',
-  localFile___childImageSharp___sizes___sizes = 'localFile___childImageSharp___sizes___sizes',
-  localFile___childImageSharp___sizes___originalImg = 'localFile___childImageSharp___sizes___originalImg',
-  localFile___childImageSharp___sizes___originalName = 'localFile___childImageSharp___sizes___originalName',
-  localFile___childImageSharp___sizes___presentationWidth = 'localFile___childImageSharp___sizes___presentationWidth',
-  localFile___childImageSharp___sizes___presentationHeight = 'localFile___childImageSharp___sizes___presentationHeight',
   localFile___childImageSharp___gatsbyImageData = 'localFile___childImageSharp___gatsbyImageData',
   localFile___childImageSharp___original___width = 'localFile___childImageSharp___original___width',
   localFile___childImageSharp___original___height = 'localFile___childImageSharp___original___height',
@@ -365,6 +314,43 @@ export enum ContentfulAssetFieldsEnum {
   localFile___childImageSharp___internal___mediaType = 'localFile___childImageSharp___internal___mediaType',
   localFile___childImageSharp___internal___owner = 'localFile___childImageSharp___internal___owner',
   localFile___childImageSharp___internal___type = 'localFile___childImageSharp___internal___type',
+  localFile___childrenLocale = 'localFile___childrenLocale',
+  localFile___childrenLocale___id = 'localFile___childrenLocale___id',
+  localFile___childrenLocale___parent___id = 'localFile___childrenLocale___parent___id',
+  localFile___childrenLocale___parent___children = 'localFile___childrenLocale___parent___children',
+  localFile___childrenLocale___children = 'localFile___childrenLocale___children',
+  localFile___childrenLocale___children___id = 'localFile___childrenLocale___children___id',
+  localFile___childrenLocale___children___children = 'localFile___childrenLocale___children___children',
+  localFile___childrenLocale___internal___content = 'localFile___childrenLocale___internal___content',
+  localFile___childrenLocale___internal___contentDigest = 'localFile___childrenLocale___internal___contentDigest',
+  localFile___childrenLocale___internal___description = 'localFile___childrenLocale___internal___description',
+  localFile___childrenLocale___internal___fieldOwners = 'localFile___childrenLocale___internal___fieldOwners',
+  localFile___childrenLocale___internal___ignoreType = 'localFile___childrenLocale___internal___ignoreType',
+  localFile___childrenLocale___internal___mediaType = 'localFile___childrenLocale___internal___mediaType',
+  localFile___childrenLocale___internal___owner = 'localFile___childrenLocale___internal___owner',
+  localFile___childrenLocale___internal___type = 'localFile___childrenLocale___internal___type',
+  localFile___childrenLocale___language = 'localFile___childrenLocale___language',
+  localFile___childrenLocale___ns = 'localFile___childrenLocale___ns',
+  localFile___childrenLocale___data = 'localFile___childrenLocale___data',
+  localFile___childrenLocale___fileAbsolutePath = 'localFile___childrenLocale___fileAbsolutePath',
+  localFile___childLocale___id = 'localFile___childLocale___id',
+  localFile___childLocale___parent___id = 'localFile___childLocale___parent___id',
+  localFile___childLocale___parent___children = 'localFile___childLocale___parent___children',
+  localFile___childLocale___children = 'localFile___childLocale___children',
+  localFile___childLocale___children___id = 'localFile___childLocale___children___id',
+  localFile___childLocale___children___children = 'localFile___childLocale___children___children',
+  localFile___childLocale___internal___content = 'localFile___childLocale___internal___content',
+  localFile___childLocale___internal___contentDigest = 'localFile___childLocale___internal___contentDigest',
+  localFile___childLocale___internal___description = 'localFile___childLocale___internal___description',
+  localFile___childLocale___internal___fieldOwners = 'localFile___childLocale___internal___fieldOwners',
+  localFile___childLocale___internal___ignoreType = 'localFile___childLocale___internal___ignoreType',
+  localFile___childLocale___internal___mediaType = 'localFile___childLocale___internal___mediaType',
+  localFile___childLocale___internal___owner = 'localFile___childLocale___internal___owner',
+  localFile___childLocale___internal___type = 'localFile___childLocale___internal___type',
+  localFile___childLocale___language = 'localFile___childLocale___language',
+  localFile___childLocale___ns = 'localFile___childLocale___ns',
+  localFile___childLocale___data = 'localFile___childLocale___data',
+  localFile___childLocale___fileAbsolutePath = 'localFile___childLocale___fileAbsolutePath',
   localFile___id = 'localFile___id',
   localFile___parent___id = 'localFile___parent___id',
   localFile___parent___parent___id = 'localFile___parent___parent___id',
@@ -412,15 +398,6 @@ export enum ContentfulAssetFieldsEnum {
   fixed___srcSet = 'fixed___srcSet',
   fixed___srcWebp = 'fixed___srcWebp',
   fixed___srcSetWebp = 'fixed___srcSetWebp',
-  resolutions___base64 = 'resolutions___base64',
-  resolutions___tracedSVG = 'resolutions___tracedSVG',
-  resolutions___aspectRatio = 'resolutions___aspectRatio',
-  resolutions___width = 'resolutions___width',
-  resolutions___height = 'resolutions___height',
-  resolutions___src = 'resolutions___src',
-  resolutions___srcSet = 'resolutions___srcSet',
-  resolutions___srcWebp = 'resolutions___srcWebp',
-  resolutions___srcSetWebp = 'resolutions___srcSetWebp',
   fluid___base64 = 'fluid___base64',
   fluid___tracedSVG = 'fluid___tracedSVG',
   fluid___aspectRatio = 'fluid___aspectRatio',
@@ -429,14 +406,7 @@ export enum ContentfulAssetFieldsEnum {
   fluid___srcWebp = 'fluid___srcWebp',
   fluid___srcSetWebp = 'fluid___srcSetWebp',
   fluid___sizes = 'fluid___sizes',
-  sizes___base64 = 'sizes___base64',
-  sizes___tracedSVG = 'sizes___tracedSVG',
-  sizes___aspectRatio = 'sizes___aspectRatio',
-  sizes___src = 'sizes___src',
-  sizes___srcSet = 'sizes___srcSet',
-  sizes___srcWebp = 'sizes___srcWebp',
-  sizes___srcSetWebp = 'sizes___srcSetWebp',
-  sizes___sizes = 'sizes___sizes',
+  gatsbyImageData = 'gatsbyImageData',
   resize___base64 = 'resize___base64',
   resize___tracedSVG = 'resize___tracedSVG',
   resize___src = 'resize___src',
@@ -580,9 +550,8 @@ export type ContentfulAssetFilterInput = {
   sys?: Maybe<ContentfulAssetSysFilterInput>;
   localFile?: Maybe<FileFilterInput>;
   fixed?: Maybe<ContentfulFixedFilterInput>;
-  resolutions?: Maybe<ContentfulResolutionsFilterInput>;
   fluid?: Maybe<ContentfulFluidFilterInput>;
-  sizes?: Maybe<ContentfulSizesFilterInput>;
+  gatsbyImageData?: Maybe<JsonQueryOperatorInput>;
   resize?: Maybe<ContentfulResizeFilterInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -613,6 +582,160 @@ export type ContentfulAssetSys = {
 export type ContentfulAssetSysFilterInput = {
   type?: Maybe<StringQueryOperatorInput>;
   revision?: Maybe<IntQueryOperatorInput>;
+};
+
+export type ContentfulBlogAuthor = ContentfulReference & ContentfulEntry & Node & {
+  __typename?: 'ContentfulBlogAuthor';
+  contentful_id: Scalars['String'];
+  id: Scalars['ID'];
+  node_locale: Scalars['String'];
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+};
+
+export type ContentfulBlogAuthorConnection = {
+  __typename?: 'ContentfulBlogAuthorConnection';
+  totalCount: Scalars['Int'];
+  edges: Array<ContentfulBlogAuthorEdge>;
+  nodes: Array<ContentfulBlogAuthor>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  group: Array<ContentfulBlogAuthorGroupConnection>;
+};
+
+
+export type ContentfulBlogAuthorConnectionDistinctArgs = {
+  field: ContentfulBlogAuthorFieldsEnum;
+};
+
+
+export type ContentfulBlogAuthorConnectionGroupArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  field: ContentfulBlogAuthorFieldsEnum;
+};
+
+export type ContentfulBlogAuthorEdge = {
+  __typename?: 'ContentfulBlogAuthorEdge';
+  next?: Maybe<ContentfulBlogAuthor>;
+  node: ContentfulBlogAuthor;
+  previous?: Maybe<ContentfulBlogAuthor>;
+};
+
+export enum ContentfulBlogAuthorFieldsEnum {
+  contentful_id = 'contentful_id',
+  id = 'id',
+  node_locale = 'node_locale',
+  parent___id = 'parent___id',
+  parent___parent___id = 'parent___parent___id',
+  parent___parent___parent___id = 'parent___parent___parent___id',
+  parent___parent___parent___children = 'parent___parent___parent___children',
+  parent___parent___children = 'parent___parent___children',
+  parent___parent___children___id = 'parent___parent___children___id',
+  parent___parent___children___children = 'parent___parent___children___children',
+  parent___parent___internal___content = 'parent___parent___internal___content',
+  parent___parent___internal___contentDigest = 'parent___parent___internal___contentDigest',
+  parent___parent___internal___description = 'parent___parent___internal___description',
+  parent___parent___internal___fieldOwners = 'parent___parent___internal___fieldOwners',
+  parent___parent___internal___ignoreType = 'parent___parent___internal___ignoreType',
+  parent___parent___internal___mediaType = 'parent___parent___internal___mediaType',
+  parent___parent___internal___owner = 'parent___parent___internal___owner',
+  parent___parent___internal___type = 'parent___parent___internal___type',
+  parent___children = 'parent___children',
+  parent___children___id = 'parent___children___id',
+  parent___children___parent___id = 'parent___children___parent___id',
+  parent___children___parent___children = 'parent___children___parent___children',
+  parent___children___children = 'parent___children___children',
+  parent___children___children___id = 'parent___children___children___id',
+  parent___children___children___children = 'parent___children___children___children',
+  parent___children___internal___content = 'parent___children___internal___content',
+  parent___children___internal___contentDigest = 'parent___children___internal___contentDigest',
+  parent___children___internal___description = 'parent___children___internal___description',
+  parent___children___internal___fieldOwners = 'parent___children___internal___fieldOwners',
+  parent___children___internal___ignoreType = 'parent___children___internal___ignoreType',
+  parent___children___internal___mediaType = 'parent___children___internal___mediaType',
+  parent___children___internal___owner = 'parent___children___internal___owner',
+  parent___children___internal___type = 'parent___children___internal___type',
+  parent___internal___content = 'parent___internal___content',
+  parent___internal___contentDigest = 'parent___internal___contentDigest',
+  parent___internal___description = 'parent___internal___description',
+  parent___internal___fieldOwners = 'parent___internal___fieldOwners',
+  parent___internal___ignoreType = 'parent___internal___ignoreType',
+  parent___internal___mediaType = 'parent___internal___mediaType',
+  parent___internal___owner = 'parent___internal___owner',
+  parent___internal___type = 'parent___internal___type',
+  children = 'children',
+  children___id = 'children___id',
+  children___parent___id = 'children___parent___id',
+  children___parent___parent___id = 'children___parent___parent___id',
+  children___parent___parent___children = 'children___parent___parent___children',
+  children___parent___children = 'children___parent___children',
+  children___parent___children___id = 'children___parent___children___id',
+  children___parent___children___children = 'children___parent___children___children',
+  children___parent___internal___content = 'children___parent___internal___content',
+  children___parent___internal___contentDigest = 'children___parent___internal___contentDigest',
+  children___parent___internal___description = 'children___parent___internal___description',
+  children___parent___internal___fieldOwners = 'children___parent___internal___fieldOwners',
+  children___parent___internal___ignoreType = 'children___parent___internal___ignoreType',
+  children___parent___internal___mediaType = 'children___parent___internal___mediaType',
+  children___parent___internal___owner = 'children___parent___internal___owner',
+  children___parent___internal___type = 'children___parent___internal___type',
+  children___children = 'children___children',
+  children___children___id = 'children___children___id',
+  children___children___parent___id = 'children___children___parent___id',
+  children___children___parent___children = 'children___children___parent___children',
+  children___children___children = 'children___children___children',
+  children___children___children___id = 'children___children___children___id',
+  children___children___children___children = 'children___children___children___children',
+  children___children___internal___content = 'children___children___internal___content',
+  children___children___internal___contentDigest = 'children___children___internal___contentDigest',
+  children___children___internal___description = 'children___children___internal___description',
+  children___children___internal___fieldOwners = 'children___children___internal___fieldOwners',
+  children___children___internal___ignoreType = 'children___children___internal___ignoreType',
+  children___children___internal___mediaType = 'children___children___internal___mediaType',
+  children___children___internal___owner = 'children___children___internal___owner',
+  children___children___internal___type = 'children___children___internal___type',
+  children___internal___content = 'children___internal___content',
+  children___internal___contentDigest = 'children___internal___contentDigest',
+  children___internal___description = 'children___internal___description',
+  children___internal___fieldOwners = 'children___internal___fieldOwners',
+  children___internal___ignoreType = 'children___internal___ignoreType',
+  children___internal___mediaType = 'children___internal___mediaType',
+  children___internal___owner = 'children___internal___owner',
+  children___internal___type = 'children___internal___type',
+  internal___content = 'internal___content',
+  internal___contentDigest = 'internal___contentDigest',
+  internal___description = 'internal___description',
+  internal___fieldOwners = 'internal___fieldOwners',
+  internal___ignoreType = 'internal___ignoreType',
+  internal___mediaType = 'internal___mediaType',
+  internal___owner = 'internal___owner',
+  internal___type = 'internal___type'
+}
+
+export type ContentfulBlogAuthorFilterInput = {
+  contentful_id?: Maybe<StringQueryOperatorInput>;
+  id?: Maybe<StringQueryOperatorInput>;
+  node_locale?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+};
+
+export type ContentfulBlogAuthorGroupConnection = {
+  __typename?: 'ContentfulBlogAuthorGroupConnection';
+  totalCount: Scalars['Int'];
+  edges: Array<ContentfulBlogAuthorEdge>;
+  nodes: Array<ContentfulBlogAuthor>;
+  pageInfo: PageInfo;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+export type ContentfulBlogAuthorSortInput = {
+  fields?: Maybe<Array<Maybe<ContentfulBlogAuthorFieldsEnum>>>;
+  order?: Maybe<Array<Maybe<SortOrderEnum>>>;
 };
 
 export type ContentfulContact = ContentfulReference & ContentfulEntry & Node & {
@@ -839,6 +962,7 @@ export enum ContentfulContactFieldsEnum {
   icon___oss___image___title = 'icon___oss___image___title',
   icon___oss___image___description = 'icon___oss___image___description',
   icon___oss___image___node_locale = 'icon___oss___image___node_locale',
+  icon___oss___image___gatsbyImageData = 'icon___oss___image___gatsbyImageData',
   icon___oss___image___children = 'icon___oss___image___children',
   icon___oss___detail___id = 'icon___oss___detail___id',
   icon___oss___detail___children = 'icon___oss___detail___children',
@@ -2010,6 +2134,7 @@ export enum ContentfulHistoryFieldsEnum {
   icon___oss___image___title = 'icon___oss___image___title',
   icon___oss___image___description = 'icon___oss___image___description',
   icon___oss___image___node_locale = 'icon___oss___image___node_locale',
+  icon___oss___image___gatsbyImageData = 'icon___oss___image___gatsbyImageData',
   icon___oss___image___children = 'icon___oss___image___children',
   icon___oss___detail___id = 'icon___oss___detail___id',
   icon___oss___detail___children = 'icon___oss___detail___children',
@@ -3201,7 +3326,9 @@ export enum ContentfulIconFieldsEnum {
   oss___image___localFile___blksize = 'oss___image___localFile___blksize',
   oss___image___localFile___blocks = 'oss___image___localFile___blocks',
   oss___image___localFile___url = 'oss___image___localFile___url',
+  oss___image___localFile___publicURL = 'oss___image___localFile___publicURL',
   oss___image___localFile___childrenImageSharp = 'oss___image___localFile___childrenImageSharp',
+  oss___image___localFile___childrenLocale = 'oss___image___localFile___childrenLocale',
   oss___image___localFile___id = 'oss___image___localFile___id',
   oss___image___localFile___children = 'oss___image___localFile___children',
   oss___image___fixed___base64 = 'oss___image___fixed___base64',
@@ -3213,15 +3340,6 @@ export enum ContentfulIconFieldsEnum {
   oss___image___fixed___srcSet = 'oss___image___fixed___srcSet',
   oss___image___fixed___srcWebp = 'oss___image___fixed___srcWebp',
   oss___image___fixed___srcSetWebp = 'oss___image___fixed___srcSetWebp',
-  oss___image___resolutions___base64 = 'oss___image___resolutions___base64',
-  oss___image___resolutions___tracedSVG = 'oss___image___resolutions___tracedSVG',
-  oss___image___resolutions___aspectRatio = 'oss___image___resolutions___aspectRatio',
-  oss___image___resolutions___width = 'oss___image___resolutions___width',
-  oss___image___resolutions___height = 'oss___image___resolutions___height',
-  oss___image___resolutions___src = 'oss___image___resolutions___src',
-  oss___image___resolutions___srcSet = 'oss___image___resolutions___srcSet',
-  oss___image___resolutions___srcWebp = 'oss___image___resolutions___srcWebp',
-  oss___image___resolutions___srcSetWebp = 'oss___image___resolutions___srcSetWebp',
   oss___image___fluid___base64 = 'oss___image___fluid___base64',
   oss___image___fluid___tracedSVG = 'oss___image___fluid___tracedSVG',
   oss___image___fluid___aspectRatio = 'oss___image___fluid___aspectRatio',
@@ -3230,14 +3348,7 @@ export enum ContentfulIconFieldsEnum {
   oss___image___fluid___srcWebp = 'oss___image___fluid___srcWebp',
   oss___image___fluid___srcSetWebp = 'oss___image___fluid___srcSetWebp',
   oss___image___fluid___sizes = 'oss___image___fluid___sizes',
-  oss___image___sizes___base64 = 'oss___image___sizes___base64',
-  oss___image___sizes___tracedSVG = 'oss___image___sizes___tracedSVG',
-  oss___image___sizes___aspectRatio = 'oss___image___sizes___aspectRatio',
-  oss___image___sizes___src = 'oss___image___sizes___src',
-  oss___image___sizes___srcSet = 'oss___image___sizes___srcSet',
-  oss___image___sizes___srcWebp = 'oss___image___sizes___srcWebp',
-  oss___image___sizes___srcSetWebp = 'oss___image___sizes___srcSetWebp',
-  oss___image___sizes___sizes = 'oss___image___sizes___sizes',
+  oss___image___gatsbyImageData = 'oss___image___gatsbyImageData',
   oss___image___resize___base64 = 'oss___image___resize___base64',
   oss___image___resize___tracedSVG = 'oss___image___resize___tracedSVG',
   oss___image___resize___src = 'oss___image___resize___src',
@@ -4465,6 +4576,7 @@ export enum ContentfulImageCropFocus {
 
 export enum ContentfulImageFormat {
   NO_CHANGE = 'NO_CHANGE',
+  AUTO = 'AUTO',
   JPG = 'JPG',
   PNG = 'PNG',
   WEBP = 'WEBP'
@@ -4998,6 +5110,7 @@ export enum ContentfulOssFieldsEnum {
   tags___oss___image___title = 'tags___oss___image___title',
   tags___oss___image___description = 'tags___oss___image___description',
   tags___oss___image___node_locale = 'tags___oss___image___node_locale',
+  tags___oss___image___gatsbyImageData = 'tags___oss___image___gatsbyImageData',
   tags___oss___image___children = 'tags___oss___image___children',
   tags___oss___detail___id = 'tags___oss___detail___id',
   tags___oss___detail___children = 'tags___oss___detail___children',
@@ -5219,6 +5332,7 @@ export enum ContentfulOssFieldsEnum {
   icon___oss___image___title = 'icon___oss___image___title',
   icon___oss___image___description = 'icon___oss___image___description',
   icon___oss___image___node_locale = 'icon___oss___image___node_locale',
+  icon___oss___image___gatsbyImageData = 'icon___oss___image___gatsbyImageData',
   icon___oss___image___children = 'icon___oss___image___children',
   icon___oss___detail___id = 'icon___oss___detail___id',
   icon___oss___detail___children = 'icon___oss___detail___children',
@@ -5532,6 +5646,7 @@ export enum ContentfulOssFieldsEnum {
   image___localFile___blksize = 'image___localFile___blksize',
   image___localFile___blocks = 'image___localFile___blocks',
   image___localFile___url = 'image___localFile___url',
+  image___localFile___publicURL = 'image___localFile___publicURL',
   image___localFile___childrenImageSharp = 'image___localFile___childrenImageSharp',
   image___localFile___childrenImageSharp___gatsbyImageData = 'image___localFile___childrenImageSharp___gatsbyImageData',
   image___localFile___childrenImageSharp___id = 'image___localFile___childrenImageSharp___id',
@@ -5539,6 +5654,19 @@ export enum ContentfulOssFieldsEnum {
   image___localFile___childImageSharp___gatsbyImageData = 'image___localFile___childImageSharp___gatsbyImageData',
   image___localFile___childImageSharp___id = 'image___localFile___childImageSharp___id',
   image___localFile___childImageSharp___children = 'image___localFile___childImageSharp___children',
+  image___localFile___childrenLocale = 'image___localFile___childrenLocale',
+  image___localFile___childrenLocale___id = 'image___localFile___childrenLocale___id',
+  image___localFile___childrenLocale___children = 'image___localFile___childrenLocale___children',
+  image___localFile___childrenLocale___language = 'image___localFile___childrenLocale___language',
+  image___localFile___childrenLocale___ns = 'image___localFile___childrenLocale___ns',
+  image___localFile___childrenLocale___data = 'image___localFile___childrenLocale___data',
+  image___localFile___childrenLocale___fileAbsolutePath = 'image___localFile___childrenLocale___fileAbsolutePath',
+  image___localFile___childLocale___id = 'image___localFile___childLocale___id',
+  image___localFile___childLocale___children = 'image___localFile___childLocale___children',
+  image___localFile___childLocale___language = 'image___localFile___childLocale___language',
+  image___localFile___childLocale___ns = 'image___localFile___childLocale___ns',
+  image___localFile___childLocale___data = 'image___localFile___childLocale___data',
+  image___localFile___childLocale___fileAbsolutePath = 'image___localFile___childLocale___fileAbsolutePath',
   image___localFile___id = 'image___localFile___id',
   image___localFile___parent___id = 'image___localFile___parent___id',
   image___localFile___parent___children = 'image___localFile___parent___children',
@@ -5562,15 +5690,6 @@ export enum ContentfulOssFieldsEnum {
   image___fixed___srcSet = 'image___fixed___srcSet',
   image___fixed___srcWebp = 'image___fixed___srcWebp',
   image___fixed___srcSetWebp = 'image___fixed___srcSetWebp',
-  image___resolutions___base64 = 'image___resolutions___base64',
-  image___resolutions___tracedSVG = 'image___resolutions___tracedSVG',
-  image___resolutions___aspectRatio = 'image___resolutions___aspectRatio',
-  image___resolutions___width = 'image___resolutions___width',
-  image___resolutions___height = 'image___resolutions___height',
-  image___resolutions___src = 'image___resolutions___src',
-  image___resolutions___srcSet = 'image___resolutions___srcSet',
-  image___resolutions___srcWebp = 'image___resolutions___srcWebp',
-  image___resolutions___srcSetWebp = 'image___resolutions___srcSetWebp',
   image___fluid___base64 = 'image___fluid___base64',
   image___fluid___tracedSVG = 'image___fluid___tracedSVG',
   image___fluid___aspectRatio = 'image___fluid___aspectRatio',
@@ -5579,14 +5698,7 @@ export enum ContentfulOssFieldsEnum {
   image___fluid___srcWebp = 'image___fluid___srcWebp',
   image___fluid___srcSetWebp = 'image___fluid___srcSetWebp',
   image___fluid___sizes = 'image___fluid___sizes',
-  image___sizes___base64 = 'image___sizes___base64',
-  image___sizes___tracedSVG = 'image___sizes___tracedSVG',
-  image___sizes___aspectRatio = 'image___sizes___aspectRatio',
-  image___sizes___src = 'image___sizes___src',
-  image___sizes___srcSet = 'image___sizes___srcSet',
-  image___sizes___srcWebp = 'image___sizes___srcWebp',
-  image___sizes___srcSetWebp = 'image___sizes___srcSetWebp',
-  image___sizes___sizes = 'image___sizes___sizes',
+  image___gatsbyImageData = 'image___gatsbyImageData',
   image___resize___base64 = 'image___resize___base64',
   image___resize___tracedSVG = 'image___resize___tracedSVG',
   image___resize___src = 'image___resize___src',
@@ -6635,6 +6747,7 @@ export enum ContentfulProjectFieldsEnum {
   tags___oss___image___title = 'tags___oss___image___title',
   tags___oss___image___description = 'tags___oss___image___description',
   tags___oss___image___node_locale = 'tags___oss___image___node_locale',
+  tags___oss___image___gatsbyImageData = 'tags___oss___image___gatsbyImageData',
   tags___oss___image___children = 'tags___oss___image___children',
   tags___oss___detail___id = 'tags___oss___detail___id',
   tags___oss___detail___children = 'tags___oss___detail___children',
@@ -6856,6 +6969,7 @@ export enum ContentfulProjectFieldsEnum {
   icon___oss___image___title = 'icon___oss___image___title',
   icon___oss___image___description = 'icon___oss___image___description',
   icon___oss___image___node_locale = 'icon___oss___image___node_locale',
+  icon___oss___image___gatsbyImageData = 'icon___oss___image___gatsbyImageData',
   icon___oss___image___children = 'icon___oss___image___children',
   icon___oss___detail___id = 'icon___oss___detail___id',
   icon___oss___detail___children = 'icon___oss___detail___children',
@@ -8260,54 +8374,6 @@ export type ContentfulResizeFilterInput = {
   aspectRatio?: Maybe<FloatQueryOperatorInput>;
 };
 
-export type ContentfulResolutions = {
-  __typename?: 'ContentfulResolutions';
-  base64?: Maybe<Scalars['String']>;
-  tracedSVG?: Maybe<Scalars['String']>;
-  aspectRatio?: Maybe<Scalars['Float']>;
-  width: Scalars['Float'];
-  height: Scalars['Float'];
-  src: Scalars['String'];
-  srcSet: Scalars['String'];
-  srcWebp?: Maybe<Scalars['String']>;
-  srcSetWebp?: Maybe<Scalars['String']>;
-};
-
-export type ContentfulResolutionsFilterInput = {
-  base64?: Maybe<StringQueryOperatorInput>;
-  tracedSVG?: Maybe<StringQueryOperatorInput>;
-  aspectRatio?: Maybe<FloatQueryOperatorInput>;
-  width?: Maybe<FloatQueryOperatorInput>;
-  height?: Maybe<FloatQueryOperatorInput>;
-  src?: Maybe<StringQueryOperatorInput>;
-  srcSet?: Maybe<StringQueryOperatorInput>;
-  srcWebp?: Maybe<StringQueryOperatorInput>;
-  srcSetWebp?: Maybe<StringQueryOperatorInput>;
-};
-
-export type ContentfulSizes = {
-  __typename?: 'ContentfulSizes';
-  base64?: Maybe<Scalars['String']>;
-  tracedSVG?: Maybe<Scalars['String']>;
-  aspectRatio: Scalars['Float'];
-  src: Scalars['String'];
-  srcSet: Scalars['String'];
-  srcWebp?: Maybe<Scalars['String']>;
-  srcSetWebp?: Maybe<Scalars['String']>;
-  sizes: Scalars['String'];
-};
-
-export type ContentfulSizesFilterInput = {
-  base64?: Maybe<StringQueryOperatorInput>;
-  tracedSVG?: Maybe<StringQueryOperatorInput>;
-  aspectRatio?: Maybe<FloatQueryOperatorInput>;
-  src?: Maybe<StringQueryOperatorInput>;
-  srcSet?: Maybe<StringQueryOperatorInput>;
-  srcWebp?: Maybe<StringQueryOperatorInput>;
-  srcSetWebp?: Maybe<StringQueryOperatorInput>;
-  sizes?: Maybe<StringQueryOperatorInput>;
-};
-
 export type ContentfulSkillMap = ContentfulReference & ContentfulEntry & Node & {
   __typename?: 'ContentfulSkillMap';
   contentful_id: Scalars['String'];
@@ -8536,6 +8602,7 @@ export enum ContentfulSkillMapFieldsEnum {
   skills___oss___image___title = 'skills___oss___image___title',
   skills___oss___image___description = 'skills___oss___image___description',
   skills___oss___image___node_locale = 'skills___oss___image___node_locale',
+  skills___oss___image___gatsbyImageData = 'skills___oss___image___gatsbyImageData',
   skills___oss___image___children = 'skills___oss___image___children',
   skills___oss___detail___id = 'skills___oss___detail___id',
   skills___oss___detail___children = 'skills___oss___detail___children',
@@ -9501,7 +9568,9 @@ export enum ContentfulTagFieldsEnum {
   oss___image___localFile___blksize = 'oss___image___localFile___blksize',
   oss___image___localFile___blocks = 'oss___image___localFile___blocks',
   oss___image___localFile___url = 'oss___image___localFile___url',
+  oss___image___localFile___publicURL = 'oss___image___localFile___publicURL',
   oss___image___localFile___childrenImageSharp = 'oss___image___localFile___childrenImageSharp',
+  oss___image___localFile___childrenLocale = 'oss___image___localFile___childrenLocale',
   oss___image___localFile___id = 'oss___image___localFile___id',
   oss___image___localFile___children = 'oss___image___localFile___children',
   oss___image___fixed___base64 = 'oss___image___fixed___base64',
@@ -9513,15 +9582,6 @@ export enum ContentfulTagFieldsEnum {
   oss___image___fixed___srcSet = 'oss___image___fixed___srcSet',
   oss___image___fixed___srcWebp = 'oss___image___fixed___srcWebp',
   oss___image___fixed___srcSetWebp = 'oss___image___fixed___srcSetWebp',
-  oss___image___resolutions___base64 = 'oss___image___resolutions___base64',
-  oss___image___resolutions___tracedSVG = 'oss___image___resolutions___tracedSVG',
-  oss___image___resolutions___aspectRatio = 'oss___image___resolutions___aspectRatio',
-  oss___image___resolutions___width = 'oss___image___resolutions___width',
-  oss___image___resolutions___height = 'oss___image___resolutions___height',
-  oss___image___resolutions___src = 'oss___image___resolutions___src',
-  oss___image___resolutions___srcSet = 'oss___image___resolutions___srcSet',
-  oss___image___resolutions___srcWebp = 'oss___image___resolutions___srcWebp',
-  oss___image___resolutions___srcSetWebp = 'oss___image___resolutions___srcSetWebp',
   oss___image___fluid___base64 = 'oss___image___fluid___base64',
   oss___image___fluid___tracedSVG = 'oss___image___fluid___tracedSVG',
   oss___image___fluid___aspectRatio = 'oss___image___fluid___aspectRatio',
@@ -9530,14 +9590,7 @@ export enum ContentfulTagFieldsEnum {
   oss___image___fluid___srcWebp = 'oss___image___fluid___srcWebp',
   oss___image___fluid___srcSetWebp = 'oss___image___fluid___srcSetWebp',
   oss___image___fluid___sizes = 'oss___image___fluid___sizes',
-  oss___image___sizes___base64 = 'oss___image___sizes___base64',
-  oss___image___sizes___tracedSVG = 'oss___image___sizes___tracedSVG',
-  oss___image___sizes___aspectRatio = 'oss___image___sizes___aspectRatio',
-  oss___image___sizes___src = 'oss___image___sizes___src',
-  oss___image___sizes___srcSet = 'oss___image___sizes___srcSet',
-  oss___image___sizes___srcWebp = 'oss___image___sizes___srcWebp',
-  oss___image___sizes___srcSetWebp = 'oss___image___sizes___srcSetWebp',
-  oss___image___sizes___sizes = 'oss___image___sizes___sizes',
+  oss___image___gatsbyImageData = 'oss___image___gatsbyImageData',
   oss___image___resize___base64 = 'oss___image___resize___base64',
   oss___image___resize___tracedSVG = 'oss___image___resize___tracedSVG',
   oss___image___resize___src = 'oss___image___resize___src',
@@ -10092,6 +10145,7 @@ export enum ContentfulWhatICanDoFieldsEnum {
   icon___oss___image___title = 'icon___oss___image___title',
   icon___oss___image___description = 'icon___oss___image___description',
   icon___oss___image___node_locale = 'icon___oss___image___node_locale',
+  icon___oss___image___gatsbyImageData = 'icon___oss___image___gatsbyImageData',
   icon___oss___image___children = 'icon___oss___image___children',
   icon___oss___detail___id = 'icon___oss___detail___id',
   icon___oss___detail___children = 'icon___oss___detail___children',
@@ -10570,6 +10624,8 @@ export type Directory = Node & {
   birthtime?: Maybe<Scalars['Date']>;
   /** @deprecated Use `birthTime` instead */
   birthtimeMs?: Maybe<Scalars['Float']>;
+  blksize?: Maybe<Scalars['Int']>;
+  blocks?: Maybe<Scalars['Int']>;
   id: Scalars['ID'];
   parent?: Maybe<Node>;
   children: Array<Node>;
@@ -10693,6 +10749,8 @@ export enum DirectoryFieldsEnum {
   ctime = 'ctime',
   birthtime = 'birthtime',
   birthtimeMs = 'birthtimeMs',
+  blksize = 'blksize',
+  blocks = 'blocks',
   id = 'id',
   parent___id = 'parent___id',
   parent___parent___id = 'parent___parent___id',
@@ -10813,6 +10871,8 @@ export type DirectoryFilterInput = {
   ctime?: Maybe<DateQueryOperatorInput>;
   birthtime?: Maybe<DateQueryOperatorInput>;
   birthtimeMs?: Maybe<FloatQueryOperatorInput>;
+  blksize?: Maybe<IntQueryOperatorInput>;
+  blocks?: Maybe<IntQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -10878,10 +10938,16 @@ export type File = Node & {
   blksize?: Maybe<Scalars['Int']>;
   blocks?: Maybe<Scalars['Int']>;
   url?: Maybe<Scalars['String']>;
+  /** Copy file to static directory and return public url to it */
+  publicURL?: Maybe<Scalars['String']>;
   /** Returns all children nodes filtered by type ImageSharp */
   childrenImageSharp?: Maybe<Array<Maybe<ImageSharp>>>;
   /** Returns the first child node of type ImageSharp or null if there are no children of given type on this node */
   childImageSharp?: Maybe<ImageSharp>;
+  /** Returns all children nodes filtered by type Locale */
+  childrenLocale?: Maybe<Array<Maybe<Locale>>>;
+  /** Returns the first child node of type Locale or null if there are no children of given type on this node */
+  childLocale?: Maybe<Locale>;
   id: Scalars['ID'];
   parent?: Maybe<Node>;
   children: Array<Node>;
@@ -11008,6 +11074,7 @@ export enum FileFieldsEnum {
   blksize = 'blksize',
   blocks = 'blocks',
   url = 'url',
+  publicURL = 'publicURL',
   childrenImageSharp = 'childrenImageSharp',
   childrenImageSharp___fixed___base64 = 'childrenImageSharp___fixed___base64',
   childrenImageSharp___fixed___tracedSVG = 'childrenImageSharp___fixed___tracedSVG',
@@ -11019,16 +11086,6 @@ export enum FileFieldsEnum {
   childrenImageSharp___fixed___srcWebp = 'childrenImageSharp___fixed___srcWebp',
   childrenImageSharp___fixed___srcSetWebp = 'childrenImageSharp___fixed___srcSetWebp',
   childrenImageSharp___fixed___originalName = 'childrenImageSharp___fixed___originalName',
-  childrenImageSharp___resolutions___base64 = 'childrenImageSharp___resolutions___base64',
-  childrenImageSharp___resolutions___tracedSVG = 'childrenImageSharp___resolutions___tracedSVG',
-  childrenImageSharp___resolutions___aspectRatio = 'childrenImageSharp___resolutions___aspectRatio',
-  childrenImageSharp___resolutions___width = 'childrenImageSharp___resolutions___width',
-  childrenImageSharp___resolutions___height = 'childrenImageSharp___resolutions___height',
-  childrenImageSharp___resolutions___src = 'childrenImageSharp___resolutions___src',
-  childrenImageSharp___resolutions___srcSet = 'childrenImageSharp___resolutions___srcSet',
-  childrenImageSharp___resolutions___srcWebp = 'childrenImageSharp___resolutions___srcWebp',
-  childrenImageSharp___resolutions___srcSetWebp = 'childrenImageSharp___resolutions___srcSetWebp',
-  childrenImageSharp___resolutions___originalName = 'childrenImageSharp___resolutions___originalName',
   childrenImageSharp___fluid___base64 = 'childrenImageSharp___fluid___base64',
   childrenImageSharp___fluid___tracedSVG = 'childrenImageSharp___fluid___tracedSVG',
   childrenImageSharp___fluid___aspectRatio = 'childrenImageSharp___fluid___aspectRatio',
@@ -11041,18 +11098,6 @@ export enum FileFieldsEnum {
   childrenImageSharp___fluid___originalName = 'childrenImageSharp___fluid___originalName',
   childrenImageSharp___fluid___presentationWidth = 'childrenImageSharp___fluid___presentationWidth',
   childrenImageSharp___fluid___presentationHeight = 'childrenImageSharp___fluid___presentationHeight',
-  childrenImageSharp___sizes___base64 = 'childrenImageSharp___sizes___base64',
-  childrenImageSharp___sizes___tracedSVG = 'childrenImageSharp___sizes___tracedSVG',
-  childrenImageSharp___sizes___aspectRatio = 'childrenImageSharp___sizes___aspectRatio',
-  childrenImageSharp___sizes___src = 'childrenImageSharp___sizes___src',
-  childrenImageSharp___sizes___srcSet = 'childrenImageSharp___sizes___srcSet',
-  childrenImageSharp___sizes___srcWebp = 'childrenImageSharp___sizes___srcWebp',
-  childrenImageSharp___sizes___srcSetWebp = 'childrenImageSharp___sizes___srcSetWebp',
-  childrenImageSharp___sizes___sizes = 'childrenImageSharp___sizes___sizes',
-  childrenImageSharp___sizes___originalImg = 'childrenImageSharp___sizes___originalImg',
-  childrenImageSharp___sizes___originalName = 'childrenImageSharp___sizes___originalName',
-  childrenImageSharp___sizes___presentationWidth = 'childrenImageSharp___sizes___presentationWidth',
-  childrenImageSharp___sizes___presentationHeight = 'childrenImageSharp___sizes___presentationHeight',
   childrenImageSharp___gatsbyImageData = 'childrenImageSharp___gatsbyImageData',
   childrenImageSharp___original___width = 'childrenImageSharp___original___width',
   childrenImageSharp___original___height = 'childrenImageSharp___original___height',
@@ -11111,16 +11156,6 @@ export enum FileFieldsEnum {
   childImageSharp___fixed___srcWebp = 'childImageSharp___fixed___srcWebp',
   childImageSharp___fixed___srcSetWebp = 'childImageSharp___fixed___srcSetWebp',
   childImageSharp___fixed___originalName = 'childImageSharp___fixed___originalName',
-  childImageSharp___resolutions___base64 = 'childImageSharp___resolutions___base64',
-  childImageSharp___resolutions___tracedSVG = 'childImageSharp___resolutions___tracedSVG',
-  childImageSharp___resolutions___aspectRatio = 'childImageSharp___resolutions___aspectRatio',
-  childImageSharp___resolutions___width = 'childImageSharp___resolutions___width',
-  childImageSharp___resolutions___height = 'childImageSharp___resolutions___height',
-  childImageSharp___resolutions___src = 'childImageSharp___resolutions___src',
-  childImageSharp___resolutions___srcSet = 'childImageSharp___resolutions___srcSet',
-  childImageSharp___resolutions___srcWebp = 'childImageSharp___resolutions___srcWebp',
-  childImageSharp___resolutions___srcSetWebp = 'childImageSharp___resolutions___srcSetWebp',
-  childImageSharp___resolutions___originalName = 'childImageSharp___resolutions___originalName',
   childImageSharp___fluid___base64 = 'childImageSharp___fluid___base64',
   childImageSharp___fluid___tracedSVG = 'childImageSharp___fluid___tracedSVG',
   childImageSharp___fluid___aspectRatio = 'childImageSharp___fluid___aspectRatio',
@@ -11133,18 +11168,6 @@ export enum FileFieldsEnum {
   childImageSharp___fluid___originalName = 'childImageSharp___fluid___originalName',
   childImageSharp___fluid___presentationWidth = 'childImageSharp___fluid___presentationWidth',
   childImageSharp___fluid___presentationHeight = 'childImageSharp___fluid___presentationHeight',
-  childImageSharp___sizes___base64 = 'childImageSharp___sizes___base64',
-  childImageSharp___sizes___tracedSVG = 'childImageSharp___sizes___tracedSVG',
-  childImageSharp___sizes___aspectRatio = 'childImageSharp___sizes___aspectRatio',
-  childImageSharp___sizes___src = 'childImageSharp___sizes___src',
-  childImageSharp___sizes___srcSet = 'childImageSharp___sizes___srcSet',
-  childImageSharp___sizes___srcWebp = 'childImageSharp___sizes___srcWebp',
-  childImageSharp___sizes___srcSetWebp = 'childImageSharp___sizes___srcSetWebp',
-  childImageSharp___sizes___sizes = 'childImageSharp___sizes___sizes',
-  childImageSharp___sizes___originalImg = 'childImageSharp___sizes___originalImg',
-  childImageSharp___sizes___originalName = 'childImageSharp___sizes___originalName',
-  childImageSharp___sizes___presentationWidth = 'childImageSharp___sizes___presentationWidth',
-  childImageSharp___sizes___presentationHeight = 'childImageSharp___sizes___presentationHeight',
   childImageSharp___gatsbyImageData = 'childImageSharp___gatsbyImageData',
   childImageSharp___original___width = 'childImageSharp___original___width',
   childImageSharp___original___height = 'childImageSharp___original___height',
@@ -11193,6 +11216,91 @@ export enum FileFieldsEnum {
   childImageSharp___internal___mediaType = 'childImageSharp___internal___mediaType',
   childImageSharp___internal___owner = 'childImageSharp___internal___owner',
   childImageSharp___internal___type = 'childImageSharp___internal___type',
+  childrenLocale = 'childrenLocale',
+  childrenLocale___id = 'childrenLocale___id',
+  childrenLocale___parent___id = 'childrenLocale___parent___id',
+  childrenLocale___parent___parent___id = 'childrenLocale___parent___parent___id',
+  childrenLocale___parent___parent___children = 'childrenLocale___parent___parent___children',
+  childrenLocale___parent___children = 'childrenLocale___parent___children',
+  childrenLocale___parent___children___id = 'childrenLocale___parent___children___id',
+  childrenLocale___parent___children___children = 'childrenLocale___parent___children___children',
+  childrenLocale___parent___internal___content = 'childrenLocale___parent___internal___content',
+  childrenLocale___parent___internal___contentDigest = 'childrenLocale___parent___internal___contentDigest',
+  childrenLocale___parent___internal___description = 'childrenLocale___parent___internal___description',
+  childrenLocale___parent___internal___fieldOwners = 'childrenLocale___parent___internal___fieldOwners',
+  childrenLocale___parent___internal___ignoreType = 'childrenLocale___parent___internal___ignoreType',
+  childrenLocale___parent___internal___mediaType = 'childrenLocale___parent___internal___mediaType',
+  childrenLocale___parent___internal___owner = 'childrenLocale___parent___internal___owner',
+  childrenLocale___parent___internal___type = 'childrenLocale___parent___internal___type',
+  childrenLocale___children = 'childrenLocale___children',
+  childrenLocale___children___id = 'childrenLocale___children___id',
+  childrenLocale___children___parent___id = 'childrenLocale___children___parent___id',
+  childrenLocale___children___parent___children = 'childrenLocale___children___parent___children',
+  childrenLocale___children___children = 'childrenLocale___children___children',
+  childrenLocale___children___children___id = 'childrenLocale___children___children___id',
+  childrenLocale___children___children___children = 'childrenLocale___children___children___children',
+  childrenLocale___children___internal___content = 'childrenLocale___children___internal___content',
+  childrenLocale___children___internal___contentDigest = 'childrenLocale___children___internal___contentDigest',
+  childrenLocale___children___internal___description = 'childrenLocale___children___internal___description',
+  childrenLocale___children___internal___fieldOwners = 'childrenLocale___children___internal___fieldOwners',
+  childrenLocale___children___internal___ignoreType = 'childrenLocale___children___internal___ignoreType',
+  childrenLocale___children___internal___mediaType = 'childrenLocale___children___internal___mediaType',
+  childrenLocale___children___internal___owner = 'childrenLocale___children___internal___owner',
+  childrenLocale___children___internal___type = 'childrenLocale___children___internal___type',
+  childrenLocale___internal___content = 'childrenLocale___internal___content',
+  childrenLocale___internal___contentDigest = 'childrenLocale___internal___contentDigest',
+  childrenLocale___internal___description = 'childrenLocale___internal___description',
+  childrenLocale___internal___fieldOwners = 'childrenLocale___internal___fieldOwners',
+  childrenLocale___internal___ignoreType = 'childrenLocale___internal___ignoreType',
+  childrenLocale___internal___mediaType = 'childrenLocale___internal___mediaType',
+  childrenLocale___internal___owner = 'childrenLocale___internal___owner',
+  childrenLocale___internal___type = 'childrenLocale___internal___type',
+  childrenLocale___language = 'childrenLocale___language',
+  childrenLocale___ns = 'childrenLocale___ns',
+  childrenLocale___data = 'childrenLocale___data',
+  childrenLocale___fileAbsolutePath = 'childrenLocale___fileAbsolutePath',
+  childLocale___id = 'childLocale___id',
+  childLocale___parent___id = 'childLocale___parent___id',
+  childLocale___parent___parent___id = 'childLocale___parent___parent___id',
+  childLocale___parent___parent___children = 'childLocale___parent___parent___children',
+  childLocale___parent___children = 'childLocale___parent___children',
+  childLocale___parent___children___id = 'childLocale___parent___children___id',
+  childLocale___parent___children___children = 'childLocale___parent___children___children',
+  childLocale___parent___internal___content = 'childLocale___parent___internal___content',
+  childLocale___parent___internal___contentDigest = 'childLocale___parent___internal___contentDigest',
+  childLocale___parent___internal___description = 'childLocale___parent___internal___description',
+  childLocale___parent___internal___fieldOwners = 'childLocale___parent___internal___fieldOwners',
+  childLocale___parent___internal___ignoreType = 'childLocale___parent___internal___ignoreType',
+  childLocale___parent___internal___mediaType = 'childLocale___parent___internal___mediaType',
+  childLocale___parent___internal___owner = 'childLocale___parent___internal___owner',
+  childLocale___parent___internal___type = 'childLocale___parent___internal___type',
+  childLocale___children = 'childLocale___children',
+  childLocale___children___id = 'childLocale___children___id',
+  childLocale___children___parent___id = 'childLocale___children___parent___id',
+  childLocale___children___parent___children = 'childLocale___children___parent___children',
+  childLocale___children___children = 'childLocale___children___children',
+  childLocale___children___children___id = 'childLocale___children___children___id',
+  childLocale___children___children___children = 'childLocale___children___children___children',
+  childLocale___children___internal___content = 'childLocale___children___internal___content',
+  childLocale___children___internal___contentDigest = 'childLocale___children___internal___contentDigest',
+  childLocale___children___internal___description = 'childLocale___children___internal___description',
+  childLocale___children___internal___fieldOwners = 'childLocale___children___internal___fieldOwners',
+  childLocale___children___internal___ignoreType = 'childLocale___children___internal___ignoreType',
+  childLocale___children___internal___mediaType = 'childLocale___children___internal___mediaType',
+  childLocale___children___internal___owner = 'childLocale___children___internal___owner',
+  childLocale___children___internal___type = 'childLocale___children___internal___type',
+  childLocale___internal___content = 'childLocale___internal___content',
+  childLocale___internal___contentDigest = 'childLocale___internal___contentDigest',
+  childLocale___internal___description = 'childLocale___internal___description',
+  childLocale___internal___fieldOwners = 'childLocale___internal___fieldOwners',
+  childLocale___internal___ignoreType = 'childLocale___internal___ignoreType',
+  childLocale___internal___mediaType = 'childLocale___internal___mediaType',
+  childLocale___internal___owner = 'childLocale___internal___owner',
+  childLocale___internal___type = 'childLocale___internal___type',
+  childLocale___language = 'childLocale___language',
+  childLocale___ns = 'childLocale___ns',
+  childLocale___data = 'childLocale___data',
+  childLocale___fileAbsolutePath = 'childLocale___fileAbsolutePath',
   id = 'id',
   parent___id = 'parent___id',
   parent___parent___id = 'parent___parent___id',
@@ -11316,8 +11424,11 @@ export type FileFilterInput = {
   blksize?: Maybe<IntQueryOperatorInput>;
   blocks?: Maybe<IntQueryOperatorInput>;
   url?: Maybe<StringQueryOperatorInput>;
+  publicURL?: Maybe<StringQueryOperatorInput>;
   childrenImageSharp?: Maybe<ImageSharpFilterListInput>;
   childImageSharp?: Maybe<ImageSharpFilterInput>;
+  childrenLocale?: Maybe<LocaleFilterListInput>;
+  childLocale?: Maybe<LocaleFilterInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -11349,6 +11460,19 @@ export type FloatQueryOperatorInput = {
   in?: Maybe<Array<Maybe<Scalars['Float']>>>;
   nin?: Maybe<Array<Maybe<Scalars['Float']>>>;
 };
+
+export enum GatsbyImageLayout {
+  FIXED = 'FIXED',
+  FULL_WIDTH = 'FULL_WIDTH',
+  CONSTRAINED = 'CONSTRAINED'
+}
+
+export enum GatsbyImagePlaceholder {
+  DOMINANT_COLOR = 'DOMINANT_COLOR',
+  TRACED_SVG = 'TRACED_SVG',
+  BLURRED = 'BLURRED',
+  NONE = 'NONE'
+}
 
 export enum ImageCropFocus {
   CENTER = 'CENTER',
@@ -11383,7 +11507,7 @@ export enum ImageFormat {
 
 export enum ImageLayout {
   FIXED = 'FIXED',
-  FLUID = 'FLUID',
+  FULL_WIDTH = 'FULL_WIDTH',
   CONSTRAINED = 'CONSTRAINED'
 }
 
@@ -11414,11 +11538,7 @@ export enum ImageResizingBehavior {
 export type ImageSharp = Node & {
   __typename?: 'ImageSharp';
   fixed?: Maybe<ImageSharpFixed>;
-  /** @deprecated Resolutions was deprecated in Gatsby v2. It's been renamed to "fixed" https://example.com/write-docs-and-fix-this-example-link */
-  resolutions?: Maybe<ImageSharpResolutions>;
   fluid?: Maybe<ImageSharpFluid>;
-  /** @deprecated Sizes was deprecated in Gatsby v2. It's been renamed to "fluid" https://example.com/write-docs-and-fix-this-example-link */
-  sizes?: Maybe<ImageSharpSizes>;
   gatsbyImageData: Scalars['JSON'];
   original?: Maybe<ImageSharpOriginal>;
   resize?: Maybe<ImageSharpResize>;
@@ -11430,29 +11550,6 @@ export type ImageSharp = Node & {
 
 
 export type ImageSharpFixedArgs = {
-  width?: Maybe<Scalars['Int']>;
-  height?: Maybe<Scalars['Int']>;
-  base64Width?: Maybe<Scalars['Int']>;
-  jpegProgressive?: Maybe<Scalars['Boolean']>;
-  pngCompressionSpeed?: Maybe<Scalars['Int']>;
-  grayscale?: Maybe<Scalars['Boolean']>;
-  duotone?: Maybe<DuotoneGradient>;
-  traceSVG?: Maybe<Potrace>;
-  quality?: Maybe<Scalars['Int']>;
-  jpegQuality?: Maybe<Scalars['Int']>;
-  pngQuality?: Maybe<Scalars['Int']>;
-  webpQuality?: Maybe<Scalars['Int']>;
-  toFormat?: Maybe<ImageFormat>;
-  toFormatBase64?: Maybe<ImageFormat>;
-  cropFocus?: Maybe<ImageCropFocus>;
-  fit?: Maybe<ImageFit>;
-  background?: Maybe<Scalars['String']>;
-  rotate?: Maybe<Scalars['Int']>;
-  trim?: Maybe<Scalars['Float']>;
-};
-
-
-export type ImageSharpResolutionsArgs = {
   width?: Maybe<Scalars['Int']>;
   height?: Maybe<Scalars['Int']>;
   base64Width?: Maybe<Scalars['Int']>;
@@ -11500,42 +11597,17 @@ export type ImageSharpFluidArgs = {
 };
 
 
-export type ImageSharpSizesArgs = {
-  maxWidth?: Maybe<Scalars['Int']>;
-  maxHeight?: Maybe<Scalars['Int']>;
-  base64Width?: Maybe<Scalars['Int']>;
-  grayscale?: Maybe<Scalars['Boolean']>;
-  jpegProgressive?: Maybe<Scalars['Boolean']>;
-  pngCompressionSpeed?: Maybe<Scalars['Int']>;
-  duotone?: Maybe<DuotoneGradient>;
-  traceSVG?: Maybe<Potrace>;
-  quality?: Maybe<Scalars['Int']>;
-  jpegQuality?: Maybe<Scalars['Int']>;
-  pngQuality?: Maybe<Scalars['Int']>;
-  webpQuality?: Maybe<Scalars['Int']>;
-  toFormat?: Maybe<ImageFormat>;
-  toFormatBase64?: Maybe<ImageFormat>;
-  cropFocus?: Maybe<ImageCropFocus>;
-  fit?: Maybe<ImageFit>;
-  background?: Maybe<Scalars['String']>;
-  rotate?: Maybe<Scalars['Int']>;
-  trim?: Maybe<Scalars['Float']>;
-  sizes?: Maybe<Scalars['String']>;
-  srcSetBreakpoints?: Maybe<Array<Maybe<Scalars['Int']>>>;
-};
-
-
 export type ImageSharpGatsbyImageDataArgs = {
   layout?: Maybe<ImageLayout>;
-  maxWidth?: Maybe<Scalars['Int']>;
-  maxHeight?: Maybe<Scalars['Int']>;
   width?: Maybe<Scalars['Int']>;
   height?: Maybe<Scalars['Int']>;
+  aspectRatio?: Maybe<Scalars['Float']>;
   placeholder?: Maybe<ImagePlaceholder>;
   blurredOptions?: Maybe<BlurredOptions>;
   tracedSVGOptions?: Maybe<Potrace>;
   formats?: Maybe<Array<Maybe<ImageFormat>>>;
   outputPixelDensities?: Maybe<Array<Maybe<Scalars['Float']>>>;
+  breakpoints?: Maybe<Array<Maybe<Scalars['Int']>>>;
   sizes?: Maybe<Scalars['String']>;
   quality?: Maybe<Scalars['Int']>;
   jpgOptions?: Maybe<JpgOptions>;
@@ -11543,7 +11615,7 @@ export type ImageSharpGatsbyImageDataArgs = {
   webpOptions?: Maybe<WebPOptions>;
   avifOptions?: Maybe<AvifOptions>;
   transformOptions?: Maybe<TransformOptions>;
-  background?: Maybe<Scalars['String']>;
+  backgroundColor?: Maybe<Scalars['String']>;
 };
 
 
@@ -11609,16 +11681,6 @@ export enum ImageSharpFieldsEnum {
   fixed___srcWebp = 'fixed___srcWebp',
   fixed___srcSetWebp = 'fixed___srcSetWebp',
   fixed___originalName = 'fixed___originalName',
-  resolutions___base64 = 'resolutions___base64',
-  resolutions___tracedSVG = 'resolutions___tracedSVG',
-  resolutions___aspectRatio = 'resolutions___aspectRatio',
-  resolutions___width = 'resolutions___width',
-  resolutions___height = 'resolutions___height',
-  resolutions___src = 'resolutions___src',
-  resolutions___srcSet = 'resolutions___srcSet',
-  resolutions___srcWebp = 'resolutions___srcWebp',
-  resolutions___srcSetWebp = 'resolutions___srcSetWebp',
-  resolutions___originalName = 'resolutions___originalName',
   fluid___base64 = 'fluid___base64',
   fluid___tracedSVG = 'fluid___tracedSVG',
   fluid___aspectRatio = 'fluid___aspectRatio',
@@ -11631,18 +11693,6 @@ export enum ImageSharpFieldsEnum {
   fluid___originalName = 'fluid___originalName',
   fluid___presentationWidth = 'fluid___presentationWidth',
   fluid___presentationHeight = 'fluid___presentationHeight',
-  sizes___base64 = 'sizes___base64',
-  sizes___tracedSVG = 'sizes___tracedSVG',
-  sizes___aspectRatio = 'sizes___aspectRatio',
-  sizes___src = 'sizes___src',
-  sizes___srcSet = 'sizes___srcSet',
-  sizes___srcWebp = 'sizes___srcWebp',
-  sizes___srcSetWebp = 'sizes___srcSetWebp',
-  sizes___sizes = 'sizes___sizes',
-  sizes___originalImg = 'sizes___originalImg',
-  sizes___originalName = 'sizes___originalName',
-  sizes___presentationWidth = 'sizes___presentationWidth',
-  sizes___presentationHeight = 'sizes___presentationHeight',
   gatsbyImageData = 'gatsbyImageData',
   original___width = 'original___width',
   original___height = 'original___height',
@@ -11743,9 +11793,7 @@ export enum ImageSharpFieldsEnum {
 
 export type ImageSharpFilterInput = {
   fixed?: Maybe<ImageSharpFixedFilterInput>;
-  resolutions?: Maybe<ImageSharpResolutionsFilterInput>;
   fluid?: Maybe<ImageSharpFluidFilterInput>;
-  sizes?: Maybe<ImageSharpSizesFilterInput>;
   gatsbyImageData?: Maybe<JsonQueryOperatorInput>;
   original?: Maybe<ImageSharpOriginalFilterInput>;
   resize?: Maybe<ImageSharpResizeFilterInput>;
@@ -11859,64 +11907,6 @@ export type ImageSharpResizeFilterInput = {
   originalName?: Maybe<StringQueryOperatorInput>;
 };
 
-export type ImageSharpResolutions = {
-  __typename?: 'ImageSharpResolutions';
-  base64?: Maybe<Scalars['String']>;
-  tracedSVG?: Maybe<Scalars['String']>;
-  aspectRatio?: Maybe<Scalars['Float']>;
-  width: Scalars['Float'];
-  height: Scalars['Float'];
-  src: Scalars['String'];
-  srcSet: Scalars['String'];
-  srcWebp?: Maybe<Scalars['String']>;
-  srcSetWebp?: Maybe<Scalars['String']>;
-  originalName?: Maybe<Scalars['String']>;
-};
-
-export type ImageSharpResolutionsFilterInput = {
-  base64?: Maybe<StringQueryOperatorInput>;
-  tracedSVG?: Maybe<StringQueryOperatorInput>;
-  aspectRatio?: Maybe<FloatQueryOperatorInput>;
-  width?: Maybe<FloatQueryOperatorInput>;
-  height?: Maybe<FloatQueryOperatorInput>;
-  src?: Maybe<StringQueryOperatorInput>;
-  srcSet?: Maybe<StringQueryOperatorInput>;
-  srcWebp?: Maybe<StringQueryOperatorInput>;
-  srcSetWebp?: Maybe<StringQueryOperatorInput>;
-  originalName?: Maybe<StringQueryOperatorInput>;
-};
-
-export type ImageSharpSizes = {
-  __typename?: 'ImageSharpSizes';
-  base64?: Maybe<Scalars['String']>;
-  tracedSVG?: Maybe<Scalars['String']>;
-  aspectRatio: Scalars['Float'];
-  src: Scalars['String'];
-  srcSet: Scalars['String'];
-  srcWebp?: Maybe<Scalars['String']>;
-  srcSetWebp?: Maybe<Scalars['String']>;
-  sizes: Scalars['String'];
-  originalImg?: Maybe<Scalars['String']>;
-  originalName?: Maybe<Scalars['String']>;
-  presentationWidth: Scalars['Int'];
-  presentationHeight: Scalars['Int'];
-};
-
-export type ImageSharpSizesFilterInput = {
-  base64?: Maybe<StringQueryOperatorInput>;
-  tracedSVG?: Maybe<StringQueryOperatorInput>;
-  aspectRatio?: Maybe<FloatQueryOperatorInput>;
-  src?: Maybe<StringQueryOperatorInput>;
-  srcSet?: Maybe<StringQueryOperatorInput>;
-  srcWebp?: Maybe<StringQueryOperatorInput>;
-  srcSetWebp?: Maybe<StringQueryOperatorInput>;
-  sizes?: Maybe<StringQueryOperatorInput>;
-  originalImg?: Maybe<StringQueryOperatorInput>;
-  originalName?: Maybe<StringQueryOperatorInput>;
-  presentationWidth?: Maybe<IntQueryOperatorInput>;
-  presentationHeight?: Maybe<IntQueryOperatorInput>;
-};
-
 export type ImageSharpSortInput = {
   fields?: Maybe<Array<Maybe<ImageSharpFieldsEnum>>>;
   order?: Maybe<Array<Maybe<SortOrderEnum>>>;
@@ -11978,6 +11968,170 @@ export type JsonQueryOperatorInput = {
   nin?: Maybe<Array<Maybe<Scalars['JSON']>>>;
   regex?: Maybe<Scalars['JSON']>;
   glob?: Maybe<Scalars['JSON']>;
+};
+
+export type Locale = Node & {
+  __typename?: 'Locale';
+  id: Scalars['ID'];
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+  language?: Maybe<Scalars['String']>;
+  ns?: Maybe<Scalars['String']>;
+  data?: Maybe<Scalars['String']>;
+  fileAbsolutePath?: Maybe<Scalars['String']>;
+};
+
+export type LocaleConnection = {
+  __typename?: 'LocaleConnection';
+  totalCount: Scalars['Int'];
+  edges: Array<LocaleEdge>;
+  nodes: Array<Locale>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  group: Array<LocaleGroupConnection>;
+};
+
+
+export type LocaleConnectionDistinctArgs = {
+  field: LocaleFieldsEnum;
+};
+
+
+export type LocaleConnectionGroupArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  field: LocaleFieldsEnum;
+};
+
+export type LocaleEdge = {
+  __typename?: 'LocaleEdge';
+  next?: Maybe<Locale>;
+  node: Locale;
+  previous?: Maybe<Locale>;
+};
+
+export enum LocaleFieldsEnum {
+  id = 'id',
+  parent___id = 'parent___id',
+  parent___parent___id = 'parent___parent___id',
+  parent___parent___parent___id = 'parent___parent___parent___id',
+  parent___parent___parent___children = 'parent___parent___parent___children',
+  parent___parent___children = 'parent___parent___children',
+  parent___parent___children___id = 'parent___parent___children___id',
+  parent___parent___children___children = 'parent___parent___children___children',
+  parent___parent___internal___content = 'parent___parent___internal___content',
+  parent___parent___internal___contentDigest = 'parent___parent___internal___contentDigest',
+  parent___parent___internal___description = 'parent___parent___internal___description',
+  parent___parent___internal___fieldOwners = 'parent___parent___internal___fieldOwners',
+  parent___parent___internal___ignoreType = 'parent___parent___internal___ignoreType',
+  parent___parent___internal___mediaType = 'parent___parent___internal___mediaType',
+  parent___parent___internal___owner = 'parent___parent___internal___owner',
+  parent___parent___internal___type = 'parent___parent___internal___type',
+  parent___children = 'parent___children',
+  parent___children___id = 'parent___children___id',
+  parent___children___parent___id = 'parent___children___parent___id',
+  parent___children___parent___children = 'parent___children___parent___children',
+  parent___children___children = 'parent___children___children',
+  parent___children___children___id = 'parent___children___children___id',
+  parent___children___children___children = 'parent___children___children___children',
+  parent___children___internal___content = 'parent___children___internal___content',
+  parent___children___internal___contentDigest = 'parent___children___internal___contentDigest',
+  parent___children___internal___description = 'parent___children___internal___description',
+  parent___children___internal___fieldOwners = 'parent___children___internal___fieldOwners',
+  parent___children___internal___ignoreType = 'parent___children___internal___ignoreType',
+  parent___children___internal___mediaType = 'parent___children___internal___mediaType',
+  parent___children___internal___owner = 'parent___children___internal___owner',
+  parent___children___internal___type = 'parent___children___internal___type',
+  parent___internal___content = 'parent___internal___content',
+  parent___internal___contentDigest = 'parent___internal___contentDigest',
+  parent___internal___description = 'parent___internal___description',
+  parent___internal___fieldOwners = 'parent___internal___fieldOwners',
+  parent___internal___ignoreType = 'parent___internal___ignoreType',
+  parent___internal___mediaType = 'parent___internal___mediaType',
+  parent___internal___owner = 'parent___internal___owner',
+  parent___internal___type = 'parent___internal___type',
+  children = 'children',
+  children___id = 'children___id',
+  children___parent___id = 'children___parent___id',
+  children___parent___parent___id = 'children___parent___parent___id',
+  children___parent___parent___children = 'children___parent___parent___children',
+  children___parent___children = 'children___parent___children',
+  children___parent___children___id = 'children___parent___children___id',
+  children___parent___children___children = 'children___parent___children___children',
+  children___parent___internal___content = 'children___parent___internal___content',
+  children___parent___internal___contentDigest = 'children___parent___internal___contentDigest',
+  children___parent___internal___description = 'children___parent___internal___description',
+  children___parent___internal___fieldOwners = 'children___parent___internal___fieldOwners',
+  children___parent___internal___ignoreType = 'children___parent___internal___ignoreType',
+  children___parent___internal___mediaType = 'children___parent___internal___mediaType',
+  children___parent___internal___owner = 'children___parent___internal___owner',
+  children___parent___internal___type = 'children___parent___internal___type',
+  children___children = 'children___children',
+  children___children___id = 'children___children___id',
+  children___children___parent___id = 'children___children___parent___id',
+  children___children___parent___children = 'children___children___parent___children',
+  children___children___children = 'children___children___children',
+  children___children___children___id = 'children___children___children___id',
+  children___children___children___children = 'children___children___children___children',
+  children___children___internal___content = 'children___children___internal___content',
+  children___children___internal___contentDigest = 'children___children___internal___contentDigest',
+  children___children___internal___description = 'children___children___internal___description',
+  children___children___internal___fieldOwners = 'children___children___internal___fieldOwners',
+  children___children___internal___ignoreType = 'children___children___internal___ignoreType',
+  children___children___internal___mediaType = 'children___children___internal___mediaType',
+  children___children___internal___owner = 'children___children___internal___owner',
+  children___children___internal___type = 'children___children___internal___type',
+  children___internal___content = 'children___internal___content',
+  children___internal___contentDigest = 'children___internal___contentDigest',
+  children___internal___description = 'children___internal___description',
+  children___internal___fieldOwners = 'children___internal___fieldOwners',
+  children___internal___ignoreType = 'children___internal___ignoreType',
+  children___internal___mediaType = 'children___internal___mediaType',
+  children___internal___owner = 'children___internal___owner',
+  children___internal___type = 'children___internal___type',
+  internal___content = 'internal___content',
+  internal___contentDigest = 'internal___contentDigest',
+  internal___description = 'internal___description',
+  internal___fieldOwners = 'internal___fieldOwners',
+  internal___ignoreType = 'internal___ignoreType',
+  internal___mediaType = 'internal___mediaType',
+  internal___owner = 'internal___owner',
+  internal___type = 'internal___type',
+  language = 'language',
+  ns = 'ns',
+  data = 'data',
+  fileAbsolutePath = 'fileAbsolutePath'
+}
+
+export type LocaleFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  language?: Maybe<StringQueryOperatorInput>;
+  ns?: Maybe<StringQueryOperatorInput>;
+  data?: Maybe<StringQueryOperatorInput>;
+  fileAbsolutePath?: Maybe<StringQueryOperatorInput>;
+};
+
+export type LocaleFilterListInput = {
+  elemMatch?: Maybe<LocaleFilterInput>;
+};
+
+export type LocaleGroupConnection = {
+  __typename?: 'LocaleGroupConnection';
+  totalCount: Scalars['Int'];
+  edges: Array<LocaleEdge>;
+  nodes: Array<Locale>;
+  pageInfo: PageInfo;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+export type LocaleSortInput = {
+  fields?: Maybe<Array<Maybe<LocaleFieldsEnum>>>;
+  order?: Maybe<Array<Maybe<SortOrderEnum>>>;
 };
 
 export enum MarkdownExcerptFormats {
@@ -12343,6 +12497,10 @@ export type Query = {
   allContentfulTag: ContentfulTagConnection;
   contentfulHello?: Maybe<ContentfulHello>;
   allContentfulHello: ContentfulHelloConnection;
+  contentfulBlogAuthor?: Maybe<ContentfulBlogAuthor>;
+  allContentfulBlogAuthor: ContentfulBlogAuthorConnection;
+  locale?: Maybe<Locale>;
+  allLocale: LocaleConnection;
   contentfulOssDetailTextNode?: Maybe<ContentfulOssDetailTextNode>;
   allContentfulOssDetailTextNode: ContentfulOssDetailTextNodeConnection;
   contentfulProjectDetailTextNode?: Maybe<ContentfulProjectDetailTextNode>;
@@ -12408,8 +12566,11 @@ export type QueryFileArgs = {
   blksize?: Maybe<IntQueryOperatorInput>;
   blocks?: Maybe<IntQueryOperatorInput>;
   url?: Maybe<StringQueryOperatorInput>;
+  publicURL?: Maybe<StringQueryOperatorInput>;
   childrenImageSharp?: Maybe<ImageSharpFilterListInput>;
   childImageSharp?: Maybe<ImageSharpFilterInput>;
+  childrenLocale?: Maybe<LocaleFilterListInput>;
+  childLocale?: Maybe<LocaleFilterInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -12457,6 +12618,8 @@ export type QueryDirectoryArgs = {
   ctime?: Maybe<DateQueryOperatorInput>;
   birthtime?: Maybe<DateQueryOperatorInput>;
   birthtimeMs?: Maybe<FloatQueryOperatorInput>;
+  blksize?: Maybe<IntQueryOperatorInput>;
+  blocks?: Maybe<IntQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -12500,15 +12663,15 @@ export type QuerySitePageArgs = {
   internalComponentName?: Maybe<StringQueryOperatorInput>;
   componentChunkName?: Maybe<StringQueryOperatorInput>;
   matchPath?: Maybe<StringQueryOperatorInput>;
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
   isCreatedByStatefulCreatePages?: Maybe<BooleanQueryOperatorInput>;
   context?: Maybe<SitePageContextFilterInput>;
   pluginCreator?: Maybe<SitePluginFilterInput>;
   pluginCreatorId?: Maybe<StringQueryOperatorInput>;
   componentPath?: Maybe<StringQueryOperatorInput>;
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
 };
 
 
@@ -12522,9 +12685,7 @@ export type QueryAllSitePageArgs = {
 
 export type QueryImageSharpArgs = {
   fixed?: Maybe<ImageSharpFixedFilterInput>;
-  resolutions?: Maybe<ImageSharpResolutionsFilterInput>;
   fluid?: Maybe<ImageSharpFluidFilterInput>;
-  sizes?: Maybe<ImageSharpSizesFilterInput>;
   gatsbyImageData?: Maybe<JsonQueryOperatorInput>;
   original?: Maybe<ImageSharpOriginalFilterInput>;
   resize?: Maybe<ImageSharpResizeFilterInput>;
@@ -12582,9 +12743,8 @@ export type QueryContentfulAssetArgs = {
   sys?: Maybe<ContentfulAssetSysFilterInput>;
   localFile?: Maybe<FileFilterInput>;
   fixed?: Maybe<ContentfulFixedFilterInput>;
-  resolutions?: Maybe<ContentfulResolutionsFilterInput>;
   fluid?: Maybe<ContentfulFluidFilterInput>;
-  sizes?: Maybe<ContentfulSizesFilterInput>;
+  gatsbyImageData?: Maybe<JsonQueryOperatorInput>;
   resize?: Maybe<ContentfulResizeFilterInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -12897,6 +13057,44 @@ export type QueryContentfulHelloArgs = {
 export type QueryAllContentfulHelloArgs = {
   filter?: Maybe<ContentfulHelloFilterInput>;
   sort?: Maybe<ContentfulHelloSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryContentfulBlogAuthorArgs = {
+  contentful_id?: Maybe<StringQueryOperatorInput>;
+  id?: Maybe<StringQueryOperatorInput>;
+  node_locale?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+};
+
+
+export type QueryAllContentfulBlogAuthorArgs = {
+  filter?: Maybe<ContentfulBlogAuthorFilterInput>;
+  sort?: Maybe<ContentfulBlogAuthorSortInput>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryLocaleArgs = {
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+  language?: Maybe<StringQueryOperatorInput>;
+  ns?: Maybe<StringQueryOperatorInput>;
+  data?: Maybe<StringQueryOperatorInput>;
+  fileAbsolutePath?: Maybe<StringQueryOperatorInput>;
+};
+
+
+export type QueryAllLocaleArgs = {
+  filter?: Maybe<LocaleFilterInput>;
+  sort?: Maybe<LocaleSortInput>;
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
 };
@@ -13360,15 +13558,15 @@ export type SitePage = Node & {
   internalComponentName: Scalars['String'];
   componentChunkName: Scalars['String'];
   matchPath?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  parent?: Maybe<Node>;
-  children: Array<Node>;
-  internal: Internal;
   isCreatedByStatefulCreatePages?: Maybe<Scalars['Boolean']>;
   context?: Maybe<SitePageContext>;
   pluginCreator?: Maybe<SitePlugin>;
   pluginCreatorId?: Maybe<Scalars['String']>;
   componentPath?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
 };
 
 export type SitePageConnection = {
@@ -13409,8 +13607,8 @@ export type SitePageContextI18n = {
   language?: Maybe<Scalars['String']>;
   languages?: Maybe<Array<Maybe<Scalars['String']>>>;
   defaultLanguage?: Maybe<Scalars['String']>;
+  generateDefaultLanguagePage?: Maybe<Scalars['Boolean']>;
   routed?: Maybe<Scalars['Boolean']>;
-  resources?: Maybe<SitePageContextI18nResources>;
   originalPath?: Maybe<Scalars['String']>;
   path?: Maybe<Scalars['String']>;
 };
@@ -13419,174 +13617,10 @@ export type SitePageContextI18nFilterInput = {
   language?: Maybe<StringQueryOperatorInput>;
   languages?: Maybe<StringQueryOperatorInput>;
   defaultLanguage?: Maybe<StringQueryOperatorInput>;
+  generateDefaultLanguagePage?: Maybe<BooleanQueryOperatorInput>;
   routed?: Maybe<BooleanQueryOperatorInput>;
-  resources?: Maybe<SitePageContextI18nResourcesFilterInput>;
   originalPath?: Maybe<StringQueryOperatorInput>;
   path?: Maybe<StringQueryOperatorInput>;
-};
-
-export type SitePageContextI18nResources = {
-  __typename?: 'SitePageContextI18nResources';
-  ja?: Maybe<SitePageContextI18nResourcesJa>;
-};
-
-export type SitePageContextI18nResourcesFilterInput = {
-  ja?: Maybe<SitePageContextI18nResourcesJaFilterInput>;
-};
-
-export type SitePageContextI18nResourcesJa = {
-  __typename?: 'SitePageContextI18nResourcesJa';
-  translation?: Maybe<SitePageContextI18nResourcesJaTranslation>;
-};
-
-export type SitePageContextI18nResourcesJaFilterInput = {
-  translation?: Maybe<SitePageContextI18nResourcesJaTranslationFilterInput>;
-};
-
-export type SitePageContextI18nResourcesJaTranslation = {
-  __typename?: 'SitePageContextI18nResourcesJaTranslation';
-  cookie_alert?: Maybe<SitePageContextI18nResourcesJaTranslationCookie_Alert>;
-  footer?: Maybe<SitePageContextI18nResourcesJaTranslationFooter>;
-  header?: Maybe<SitePageContextI18nResourcesJaTranslationHeader>;
-  hello?: Maybe<SitePageContextI18nResourcesJaTranslationHello>;
-  historys?: Maybe<SitePageContextI18nResourcesJaTranslationHistorys>;
-  home?: Maybe<SitePageContextI18nResourcesJaTranslationHome>;
-  not_found?: Maybe<SitePageContextI18nResourcesJaTranslationNot_Found>;
-  privacy?: Maybe<SitePageContextI18nResourcesJaTranslationPrivacy>;
-};
-
-export type SitePageContextI18nResourcesJaTranslationCookie_Alert = {
-  __typename?: 'SitePageContextI18nResourcesJaTranslationCookie_alert';
-  close?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-};
-
-export type SitePageContextI18nResourcesJaTranslationCookie_AlertFilterInput = {
-  close?: Maybe<StringQueryOperatorInput>;
-  description?: Maybe<StringQueryOperatorInput>;
-  title?: Maybe<StringQueryOperatorInput>;
-};
-
-export type SitePageContextI18nResourcesJaTranslationFilterInput = {
-  cookie_alert?: Maybe<SitePageContextI18nResourcesJaTranslationCookie_AlertFilterInput>;
-  footer?: Maybe<SitePageContextI18nResourcesJaTranslationFooterFilterInput>;
-  header?: Maybe<SitePageContextI18nResourcesJaTranslationHeaderFilterInput>;
-  hello?: Maybe<SitePageContextI18nResourcesJaTranslationHelloFilterInput>;
-  historys?: Maybe<SitePageContextI18nResourcesJaTranslationHistorysFilterInput>;
-  home?: Maybe<SitePageContextI18nResourcesJaTranslationHomeFilterInput>;
-  not_found?: Maybe<SitePageContextI18nResourcesJaTranslationNot_FoundFilterInput>;
-  privacy?: Maybe<SitePageContextI18nResourcesJaTranslationPrivacyFilterInput>;
-};
-
-export type SitePageContextI18nResourcesJaTranslationFooter = {
-  __typename?: 'SitePageContextI18nResourcesJaTranslationFooter';
-  copyright?: Maybe<Scalars['String']>;
-};
-
-export type SitePageContextI18nResourcesJaTranslationFooterFilterInput = {
-  copyright?: Maybe<StringQueryOperatorInput>;
-};
-
-export type SitePageContextI18nResourcesJaTranslationHeader = {
-  __typename?: 'SitePageContextI18nResourcesJaTranslationHeader';
-  changeLanguage_title?: Maybe<Scalars['String']>;
-  github_title?: Maybe<Scalars['String']>;
-  github_url?: Maybe<Scalars['String']>;
-  title_home?: Maybe<Scalars['String']>;
-  toggleDarkTheme_title?: Maybe<Scalars['String']>;
-  back_to_home?: Maybe<Scalars['String']>;
-};
-
-export type SitePageContextI18nResourcesJaTranslationHeaderFilterInput = {
-  changeLanguage_title?: Maybe<StringQueryOperatorInput>;
-  github_title?: Maybe<StringQueryOperatorInput>;
-  github_url?: Maybe<StringQueryOperatorInput>;
-  title_home?: Maybe<StringQueryOperatorInput>;
-  toggleDarkTheme_title?: Maybe<StringQueryOperatorInput>;
-  back_to_home?: Maybe<StringQueryOperatorInput>;
-};
-
-export type SitePageContextI18nResourcesJaTranslationHello = {
-  __typename?: 'SitePageContextI18nResourcesJaTranslationHello';
-  description?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-};
-
-export type SitePageContextI18nResourcesJaTranslationHelloFilterInput = {
-  description?: Maybe<StringQueryOperatorInput>;
-  title?: Maybe<StringQueryOperatorInput>;
-};
-
-export type SitePageContextI18nResourcesJaTranslationHistorys = {
-  __typename?: 'SitePageContextI18nResourcesJaTranslationHistorys';
-  age?: Maybe<Scalars['String']>;
-  date?: Maybe<Scalars['String']>;
-};
-
-export type SitePageContextI18nResourcesJaTranslationHistorysFilterInput = {
-  age?: Maybe<StringQueryOperatorInput>;
-  date?: Maybe<StringQueryOperatorInput>;
-};
-
-export type SitePageContextI18nResourcesJaTranslationHome = {
-  __typename?: 'SitePageContextI18nResourcesJaTranslationHome';
-  contacts_title?: Maybe<Scalars['String']>;
-  histories_title?: Maybe<Scalars['String']>;
-  osses_title?: Maybe<Scalars['String']>;
-  projects_title?: Maybe<Scalars['String']>;
-  qualifications_title?: Maybe<Scalars['String']>;
-  skills_title?: Maybe<Scalars['String']>;
-};
-
-export type SitePageContextI18nResourcesJaTranslationHomeFilterInput = {
-  contacts_title?: Maybe<StringQueryOperatorInput>;
-  histories_title?: Maybe<StringQueryOperatorInput>;
-  osses_title?: Maybe<StringQueryOperatorInput>;
-  projects_title?: Maybe<StringQueryOperatorInput>;
-  qualifications_title?: Maybe<StringQueryOperatorInput>;
-  skills_title?: Maybe<StringQueryOperatorInput>;
-};
-
-export type SitePageContextI18nResourcesJaTranslationNot_Found = {
-  __typename?: 'SitePageContextI18nResourcesJaTranslationNot_found';
-  back_to_home?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-};
-
-export type SitePageContextI18nResourcesJaTranslationNot_FoundFilterInput = {
-  back_to_home?: Maybe<StringQueryOperatorInput>;
-  description?: Maybe<StringQueryOperatorInput>;
-  title?: Maybe<StringQueryOperatorInput>;
-};
-
-export type SitePageContextI18nResourcesJaTranslationPrivacy = {
-  __typename?: 'SitePageContextI18nResourcesJaTranslationPrivacy';
-  description?: Maybe<SitePageContextI18nResourcesJaTranslationPrivacyDescription>;
-  title?: Maybe<Scalars['String']>;
-};
-
-export type SitePageContextI18nResourcesJaTranslationPrivacyDescription = {
-  __typename?: 'SitePageContextI18nResourcesJaTranslationPrivacyDescription';
-  _1?: Maybe<Scalars['String']>;
-  _2?: Maybe<Scalars['String']>;
-  _3?: Maybe<Scalars['String']>;
-  _4?: Maybe<Scalars['String']>;
-  _5?: Maybe<Scalars['String']>;
-};
-
-export type SitePageContextI18nResourcesJaTranslationPrivacyDescriptionFilterInput = {
-  _1?: Maybe<StringQueryOperatorInput>;
-  _2?: Maybe<StringQueryOperatorInput>;
-  _3?: Maybe<StringQueryOperatorInput>;
-  _4?: Maybe<StringQueryOperatorInput>;
-  _5?: Maybe<StringQueryOperatorInput>;
-};
-
-export type SitePageContextI18nResourcesJaTranslationPrivacyFilterInput = {
-  description?: Maybe<SitePageContextI18nResourcesJaTranslationPrivacyDescriptionFilterInput>;
-  title?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SitePageEdge = {
@@ -13602,6 +13636,129 @@ export enum SitePageFieldsEnum {
   internalComponentName = 'internalComponentName',
   componentChunkName = 'componentChunkName',
   matchPath = 'matchPath',
+  isCreatedByStatefulCreatePages = 'isCreatedByStatefulCreatePages',
+  context___language = 'context___language',
+  context___i18n___language = 'context___i18n___language',
+  context___i18n___languages = 'context___i18n___languages',
+  context___i18n___defaultLanguage = 'context___i18n___defaultLanguage',
+  context___i18n___generateDefaultLanguagePage = 'context___i18n___generateDefaultLanguagePage',
+  context___i18n___routed = 'context___i18n___routed',
+  context___i18n___originalPath = 'context___i18n___originalPath',
+  context___i18n___path = 'context___i18n___path',
+  pluginCreator___id = 'pluginCreator___id',
+  pluginCreator___parent___id = 'pluginCreator___parent___id',
+  pluginCreator___parent___parent___id = 'pluginCreator___parent___parent___id',
+  pluginCreator___parent___parent___children = 'pluginCreator___parent___parent___children',
+  pluginCreator___parent___children = 'pluginCreator___parent___children',
+  pluginCreator___parent___children___id = 'pluginCreator___parent___children___id',
+  pluginCreator___parent___children___children = 'pluginCreator___parent___children___children',
+  pluginCreator___parent___internal___content = 'pluginCreator___parent___internal___content',
+  pluginCreator___parent___internal___contentDigest = 'pluginCreator___parent___internal___contentDigest',
+  pluginCreator___parent___internal___description = 'pluginCreator___parent___internal___description',
+  pluginCreator___parent___internal___fieldOwners = 'pluginCreator___parent___internal___fieldOwners',
+  pluginCreator___parent___internal___ignoreType = 'pluginCreator___parent___internal___ignoreType',
+  pluginCreator___parent___internal___mediaType = 'pluginCreator___parent___internal___mediaType',
+  pluginCreator___parent___internal___owner = 'pluginCreator___parent___internal___owner',
+  pluginCreator___parent___internal___type = 'pluginCreator___parent___internal___type',
+  pluginCreator___children = 'pluginCreator___children',
+  pluginCreator___children___id = 'pluginCreator___children___id',
+  pluginCreator___children___parent___id = 'pluginCreator___children___parent___id',
+  pluginCreator___children___parent___children = 'pluginCreator___children___parent___children',
+  pluginCreator___children___children = 'pluginCreator___children___children',
+  pluginCreator___children___children___id = 'pluginCreator___children___children___id',
+  pluginCreator___children___children___children = 'pluginCreator___children___children___children',
+  pluginCreator___children___internal___content = 'pluginCreator___children___internal___content',
+  pluginCreator___children___internal___contentDigest = 'pluginCreator___children___internal___contentDigest',
+  pluginCreator___children___internal___description = 'pluginCreator___children___internal___description',
+  pluginCreator___children___internal___fieldOwners = 'pluginCreator___children___internal___fieldOwners',
+  pluginCreator___children___internal___ignoreType = 'pluginCreator___children___internal___ignoreType',
+  pluginCreator___children___internal___mediaType = 'pluginCreator___children___internal___mediaType',
+  pluginCreator___children___internal___owner = 'pluginCreator___children___internal___owner',
+  pluginCreator___children___internal___type = 'pluginCreator___children___internal___type',
+  pluginCreator___internal___content = 'pluginCreator___internal___content',
+  pluginCreator___internal___contentDigest = 'pluginCreator___internal___contentDigest',
+  pluginCreator___internal___description = 'pluginCreator___internal___description',
+  pluginCreator___internal___fieldOwners = 'pluginCreator___internal___fieldOwners',
+  pluginCreator___internal___ignoreType = 'pluginCreator___internal___ignoreType',
+  pluginCreator___internal___mediaType = 'pluginCreator___internal___mediaType',
+  pluginCreator___internal___owner = 'pluginCreator___internal___owner',
+  pluginCreator___internal___type = 'pluginCreator___internal___type',
+  pluginCreator___resolve = 'pluginCreator___resolve',
+  pluginCreator___name = 'pluginCreator___name',
+  pluginCreator___version = 'pluginCreator___version',
+  pluginCreator___pluginOptions___spaceId = 'pluginCreator___pluginOptions___spaceId',
+  pluginCreator___pluginOptions___accessToken = 'pluginCreator___pluginOptions___accessToken',
+  pluginCreator___pluginOptions___downloadLocal = 'pluginCreator___pluginOptions___downloadLocal',
+  pluginCreator___pluginOptions___allExtensions = 'pluginCreator___pluginOptions___allExtensions',
+  pluginCreator___pluginOptions___isTSX = 'pluginCreator___pluginOptions___isTSX',
+  pluginCreator___pluginOptions___jsxPragma = 'pluginCreator___pluginOptions___jsxPragma',
+  pluginCreator___pluginOptions___stylesProvider___injectFirst = 'pluginCreator___pluginOptions___stylesProvider___injectFirst',
+  pluginCreator___pluginOptions___modules = 'pluginCreator___pluginOptions___modules',
+  pluginCreator___pluginOptions___name = 'pluginCreator___pluginOptions___name',
+  pluginCreator___pluginOptions___path = 'pluginCreator___pluginOptions___path',
+  pluginCreator___pluginOptions___siteUrl = 'pluginCreator___pluginOptions___siteUrl',
+  pluginCreator___pluginOptions___localeJsonSourceName = 'pluginCreator___pluginOptions___localeJsonSourceName',
+  pluginCreator___pluginOptions___languages = 'pluginCreator___pluginOptions___languages',
+  pluginCreator___pluginOptions___defaultLanguage = 'pluginCreator___pluginOptions___defaultLanguage',
+  pluginCreator___pluginOptions___trackingId = 'pluginCreator___pluginOptions___trackingId',
+  pluginCreator___pluginOptions___lang = 'pluginCreator___pluginOptions___lang',
+  pluginCreator___pluginOptions___short_name = 'pluginCreator___pluginOptions___short_name',
+  pluginCreator___pluginOptions___description = 'pluginCreator___pluginOptions___description',
+  pluginCreator___pluginOptions___start_url = 'pluginCreator___pluginOptions___start_url',
+  pluginCreator___pluginOptions___display = 'pluginCreator___pluginOptions___display',
+  pluginCreator___pluginOptions___icons = 'pluginCreator___pluginOptions___icons',
+  pluginCreator___pluginOptions___icons___src = 'pluginCreator___pluginOptions___icons___src',
+  pluginCreator___pluginOptions___icons___sizes = 'pluginCreator___pluginOptions___icons___sizes',
+  pluginCreator___pluginOptions___icons___type = 'pluginCreator___pluginOptions___icons___type',
+  pluginCreator___pluginOptions___theme_color = 'pluginCreator___pluginOptions___theme_color',
+  pluginCreator___pluginOptions___background_color = 'pluginCreator___pluginOptions___background_color',
+  pluginCreator___pluginOptions___cache_busting_mode = 'pluginCreator___pluginOptions___cache_busting_mode',
+  pluginCreator___pluginOptions___include_favicon = 'pluginCreator___pluginOptions___include_favicon',
+  pluginCreator___pluginOptions___legacy = 'pluginCreator___pluginOptions___legacy',
+  pluginCreator___pluginOptions___theme_color_in_head = 'pluginCreator___pluginOptions___theme_color_in_head',
+  pluginCreator___pluginOptions___exclude = 'pluginCreator___pluginOptions___exclude',
+  pluginCreator___pluginOptions___createLinkInHead = 'pluginCreator___pluginOptions___createLinkInHead',
+  pluginCreator___pluginOptions___addUncaughtPages = 'pluginCreator___pluginOptions___addUncaughtPages',
+  pluginCreator___pluginOptions___workboxConfig___globPatterns = 'pluginCreator___pluginOptions___workboxConfig___globPatterns',
+  pluginCreator___pluginOptions___mergeScriptHashes = 'pluginCreator___pluginOptions___mergeScriptHashes',
+  pluginCreator___pluginOptions___mergeStyleHashes = 'pluginCreator___pluginOptions___mergeStyleHashes',
+  pluginCreator___pluginOptions___mergeDefaultDirectives = 'pluginCreator___pluginOptions___mergeDefaultDirectives',
+  pluginCreator___pluginOptions___directives___connect_src = 'pluginCreator___pluginOptions___directives___connect_src',
+  pluginCreator___pluginOptions___directives___default_src = 'pluginCreator___pluginOptions___directives___default_src',
+  pluginCreator___pluginOptions___directives___font_src = 'pluginCreator___pluginOptions___directives___font_src',
+  pluginCreator___pluginOptions___directives___frame_src = 'pluginCreator___pluginOptions___directives___frame_src',
+  pluginCreator___pluginOptions___directives___img_src = 'pluginCreator___pluginOptions___directives___img_src',
+  pluginCreator___pluginOptions___directives___manifest_src = 'pluginCreator___pluginOptions___directives___manifest_src',
+  pluginCreator___pluginOptions___directives___media_src = 'pluginCreator___pluginOptions___directives___media_src',
+  pluginCreator___pluginOptions___directives___object_src = 'pluginCreator___pluginOptions___directives___object_src',
+  pluginCreator___pluginOptions___directives___script_src = 'pluginCreator___pluginOptions___directives___script_src',
+  pluginCreator___pluginOptions___directives___style_src = 'pluginCreator___pluginOptions___directives___style_src',
+  pluginCreator___pluginOptions___directives___base_uri = 'pluginCreator___pluginOptions___directives___base_uri',
+  pluginCreator___pluginOptions___directives___form_action = 'pluginCreator___pluginOptions___directives___form_action',
+  pluginCreator___pluginOptions___configDir = 'pluginCreator___pluginOptions___configDir',
+  pluginCreator___pluginOptions___pathCheck = 'pluginCreator___pluginOptions___pathCheck',
+  pluginCreator___nodeAPIs = 'pluginCreator___nodeAPIs',
+  pluginCreator___browserAPIs = 'pluginCreator___browserAPIs',
+  pluginCreator___ssrAPIs = 'pluginCreator___ssrAPIs',
+  pluginCreator___pluginFilepath = 'pluginCreator___pluginFilepath',
+  pluginCreator___packageJson___name = 'pluginCreator___packageJson___name',
+  pluginCreator___packageJson___description = 'pluginCreator___packageJson___description',
+  pluginCreator___packageJson___version = 'pluginCreator___packageJson___version',
+  pluginCreator___packageJson___main = 'pluginCreator___packageJson___main',
+  pluginCreator___packageJson___author = 'pluginCreator___packageJson___author',
+  pluginCreator___packageJson___license = 'pluginCreator___packageJson___license',
+  pluginCreator___packageJson___dependencies = 'pluginCreator___packageJson___dependencies',
+  pluginCreator___packageJson___dependencies___name = 'pluginCreator___packageJson___dependencies___name',
+  pluginCreator___packageJson___dependencies___version = 'pluginCreator___packageJson___dependencies___version',
+  pluginCreator___packageJson___devDependencies = 'pluginCreator___packageJson___devDependencies',
+  pluginCreator___packageJson___devDependencies___name = 'pluginCreator___packageJson___devDependencies___name',
+  pluginCreator___packageJson___devDependencies___version = 'pluginCreator___packageJson___devDependencies___version',
+  pluginCreator___packageJson___peerDependencies = 'pluginCreator___packageJson___peerDependencies',
+  pluginCreator___packageJson___peerDependencies___name = 'pluginCreator___packageJson___peerDependencies___name',
+  pluginCreator___packageJson___peerDependencies___version = 'pluginCreator___packageJson___peerDependencies___version',
+  pluginCreator___packageJson___keywords = 'pluginCreator___packageJson___keywords',
+  pluginCreatorId = 'pluginCreatorId',
+  componentPath = 'componentPath',
   id = 'id',
   parent___id = 'parent___id',
   parent___parent___id = 'parent___parent___id',
@@ -13687,128 +13844,7 @@ export enum SitePageFieldsEnum {
   internal___ignoreType = 'internal___ignoreType',
   internal___mediaType = 'internal___mediaType',
   internal___owner = 'internal___owner',
-  internal___type = 'internal___type',
-  isCreatedByStatefulCreatePages = 'isCreatedByStatefulCreatePages',
-  context___language = 'context___language',
-  context___i18n___language = 'context___i18n___language',
-  context___i18n___languages = 'context___i18n___languages',
-  context___i18n___defaultLanguage = 'context___i18n___defaultLanguage',
-  context___i18n___routed = 'context___i18n___routed',
-  context___i18n___originalPath = 'context___i18n___originalPath',
-  context___i18n___path = 'context___i18n___path',
-  pluginCreator___id = 'pluginCreator___id',
-  pluginCreator___parent___id = 'pluginCreator___parent___id',
-  pluginCreator___parent___parent___id = 'pluginCreator___parent___parent___id',
-  pluginCreator___parent___parent___children = 'pluginCreator___parent___parent___children',
-  pluginCreator___parent___children = 'pluginCreator___parent___children',
-  pluginCreator___parent___children___id = 'pluginCreator___parent___children___id',
-  pluginCreator___parent___children___children = 'pluginCreator___parent___children___children',
-  pluginCreator___parent___internal___content = 'pluginCreator___parent___internal___content',
-  pluginCreator___parent___internal___contentDigest = 'pluginCreator___parent___internal___contentDigest',
-  pluginCreator___parent___internal___description = 'pluginCreator___parent___internal___description',
-  pluginCreator___parent___internal___fieldOwners = 'pluginCreator___parent___internal___fieldOwners',
-  pluginCreator___parent___internal___ignoreType = 'pluginCreator___parent___internal___ignoreType',
-  pluginCreator___parent___internal___mediaType = 'pluginCreator___parent___internal___mediaType',
-  pluginCreator___parent___internal___owner = 'pluginCreator___parent___internal___owner',
-  pluginCreator___parent___internal___type = 'pluginCreator___parent___internal___type',
-  pluginCreator___children = 'pluginCreator___children',
-  pluginCreator___children___id = 'pluginCreator___children___id',
-  pluginCreator___children___parent___id = 'pluginCreator___children___parent___id',
-  pluginCreator___children___parent___children = 'pluginCreator___children___parent___children',
-  pluginCreator___children___children = 'pluginCreator___children___children',
-  pluginCreator___children___children___id = 'pluginCreator___children___children___id',
-  pluginCreator___children___children___children = 'pluginCreator___children___children___children',
-  pluginCreator___children___internal___content = 'pluginCreator___children___internal___content',
-  pluginCreator___children___internal___contentDigest = 'pluginCreator___children___internal___contentDigest',
-  pluginCreator___children___internal___description = 'pluginCreator___children___internal___description',
-  pluginCreator___children___internal___fieldOwners = 'pluginCreator___children___internal___fieldOwners',
-  pluginCreator___children___internal___ignoreType = 'pluginCreator___children___internal___ignoreType',
-  pluginCreator___children___internal___mediaType = 'pluginCreator___children___internal___mediaType',
-  pluginCreator___children___internal___owner = 'pluginCreator___children___internal___owner',
-  pluginCreator___children___internal___type = 'pluginCreator___children___internal___type',
-  pluginCreator___internal___content = 'pluginCreator___internal___content',
-  pluginCreator___internal___contentDigest = 'pluginCreator___internal___contentDigest',
-  pluginCreator___internal___description = 'pluginCreator___internal___description',
-  pluginCreator___internal___fieldOwners = 'pluginCreator___internal___fieldOwners',
-  pluginCreator___internal___ignoreType = 'pluginCreator___internal___ignoreType',
-  pluginCreator___internal___mediaType = 'pluginCreator___internal___mediaType',
-  pluginCreator___internal___owner = 'pluginCreator___internal___owner',
-  pluginCreator___internal___type = 'pluginCreator___internal___type',
-  pluginCreator___resolve = 'pluginCreator___resolve',
-  pluginCreator___name = 'pluginCreator___name',
-  pluginCreator___version = 'pluginCreator___version',
-  pluginCreator___pluginOptions___spaceId = 'pluginCreator___pluginOptions___spaceId',
-  pluginCreator___pluginOptions___accessToken = 'pluginCreator___pluginOptions___accessToken',
-  pluginCreator___pluginOptions___downloadLocal = 'pluginCreator___pluginOptions___downloadLocal',
-  pluginCreator___pluginOptions___allExtensions = 'pluginCreator___pluginOptions___allExtensions',
-  pluginCreator___pluginOptions___isTSX = 'pluginCreator___pluginOptions___isTSX',
-  pluginCreator___pluginOptions___jsxPragma = 'pluginCreator___pluginOptions___jsxPragma',
-  pluginCreator___pluginOptions___stylesProvider___injectFirst = 'pluginCreator___pluginOptions___stylesProvider___injectFirst',
-  pluginCreator___pluginOptions___modules = 'pluginCreator___pluginOptions___modules',
-  pluginCreator___pluginOptions___siteUrl = 'pluginCreator___pluginOptions___siteUrl',
-  pluginCreator___pluginOptions___path = 'pluginCreator___pluginOptions___path',
-  pluginCreator___pluginOptions___languages = 'pluginCreator___pluginOptions___languages',
-  pluginCreator___pluginOptions___defaultLanguage = 'pluginCreator___pluginOptions___defaultLanguage',
-  pluginCreator___pluginOptions___trackingId = 'pluginCreator___pluginOptions___trackingId',
-  pluginCreator___pluginOptions___lang = 'pluginCreator___pluginOptions___lang',
-  pluginCreator___pluginOptions___name = 'pluginCreator___pluginOptions___name',
-  pluginCreator___pluginOptions___short_name = 'pluginCreator___pluginOptions___short_name',
-  pluginCreator___pluginOptions___description = 'pluginCreator___pluginOptions___description',
-  pluginCreator___pluginOptions___start_url = 'pluginCreator___pluginOptions___start_url',
-  pluginCreator___pluginOptions___display = 'pluginCreator___pluginOptions___display',
-  pluginCreator___pluginOptions___icons = 'pluginCreator___pluginOptions___icons',
-  pluginCreator___pluginOptions___icons___src = 'pluginCreator___pluginOptions___icons___src',
-  pluginCreator___pluginOptions___icons___sizes = 'pluginCreator___pluginOptions___icons___sizes',
-  pluginCreator___pluginOptions___icons___type = 'pluginCreator___pluginOptions___icons___type',
-  pluginCreator___pluginOptions___theme_color = 'pluginCreator___pluginOptions___theme_color',
-  pluginCreator___pluginOptions___background_color = 'pluginCreator___pluginOptions___background_color',
-  pluginCreator___pluginOptions___cache_busting_mode = 'pluginCreator___pluginOptions___cache_busting_mode',
-  pluginCreator___pluginOptions___include_favicon = 'pluginCreator___pluginOptions___include_favicon',
-  pluginCreator___pluginOptions___legacy = 'pluginCreator___pluginOptions___legacy',
-  pluginCreator___pluginOptions___theme_color_in_head = 'pluginCreator___pluginOptions___theme_color_in_head',
-  pluginCreator___pluginOptions___exclude = 'pluginCreator___pluginOptions___exclude',
-  pluginCreator___pluginOptions___createLinkInHead = 'pluginCreator___pluginOptions___createLinkInHead',
-  pluginCreator___pluginOptions___addUncaughtPages = 'pluginCreator___pluginOptions___addUncaughtPages',
-  pluginCreator___pluginOptions___workboxConfig___globPatterns = 'pluginCreator___pluginOptions___workboxConfig___globPatterns',
-  pluginCreator___pluginOptions___mergeScriptHashes = 'pluginCreator___pluginOptions___mergeScriptHashes',
-  pluginCreator___pluginOptions___mergeStyleHashes = 'pluginCreator___pluginOptions___mergeStyleHashes',
-  pluginCreator___pluginOptions___mergeDefaultDirectives = 'pluginCreator___pluginOptions___mergeDefaultDirectives',
-  pluginCreator___pluginOptions___directives___connect_src = 'pluginCreator___pluginOptions___directives___connect_src',
-  pluginCreator___pluginOptions___directives___default_src = 'pluginCreator___pluginOptions___directives___default_src',
-  pluginCreator___pluginOptions___directives___font_src = 'pluginCreator___pluginOptions___directives___font_src',
-  pluginCreator___pluginOptions___directives___frame_src = 'pluginCreator___pluginOptions___directives___frame_src',
-  pluginCreator___pluginOptions___directives___img_src = 'pluginCreator___pluginOptions___directives___img_src',
-  pluginCreator___pluginOptions___directives___manifest_src = 'pluginCreator___pluginOptions___directives___manifest_src',
-  pluginCreator___pluginOptions___directives___media_src = 'pluginCreator___pluginOptions___directives___media_src',
-  pluginCreator___pluginOptions___directives___object_src = 'pluginCreator___pluginOptions___directives___object_src',
-  pluginCreator___pluginOptions___directives___script_src = 'pluginCreator___pluginOptions___directives___script_src',
-  pluginCreator___pluginOptions___directives___style_src = 'pluginCreator___pluginOptions___directives___style_src',
-  pluginCreator___pluginOptions___directives___base_uri = 'pluginCreator___pluginOptions___directives___base_uri',
-  pluginCreator___pluginOptions___directives___form_action = 'pluginCreator___pluginOptions___directives___form_action',
-  pluginCreator___pluginOptions___configDir = 'pluginCreator___pluginOptions___configDir',
-  pluginCreator___pluginOptions___pathCheck = 'pluginCreator___pluginOptions___pathCheck',
-  pluginCreator___nodeAPIs = 'pluginCreator___nodeAPIs',
-  pluginCreator___browserAPIs = 'pluginCreator___browserAPIs',
-  pluginCreator___ssrAPIs = 'pluginCreator___ssrAPIs',
-  pluginCreator___pluginFilepath = 'pluginCreator___pluginFilepath',
-  pluginCreator___packageJson___name = 'pluginCreator___packageJson___name',
-  pluginCreator___packageJson___description = 'pluginCreator___packageJson___description',
-  pluginCreator___packageJson___version = 'pluginCreator___packageJson___version',
-  pluginCreator___packageJson___main = 'pluginCreator___packageJson___main',
-  pluginCreator___packageJson___author = 'pluginCreator___packageJson___author',
-  pluginCreator___packageJson___license = 'pluginCreator___packageJson___license',
-  pluginCreator___packageJson___dependencies = 'pluginCreator___packageJson___dependencies',
-  pluginCreator___packageJson___dependencies___name = 'pluginCreator___packageJson___dependencies___name',
-  pluginCreator___packageJson___dependencies___version = 'pluginCreator___packageJson___dependencies___version',
-  pluginCreator___packageJson___devDependencies = 'pluginCreator___packageJson___devDependencies',
-  pluginCreator___packageJson___devDependencies___name = 'pluginCreator___packageJson___devDependencies___name',
-  pluginCreator___packageJson___devDependencies___version = 'pluginCreator___packageJson___devDependencies___version',
-  pluginCreator___packageJson___peerDependencies = 'pluginCreator___packageJson___peerDependencies',
-  pluginCreator___packageJson___peerDependencies___name = 'pluginCreator___packageJson___peerDependencies___name',
-  pluginCreator___packageJson___peerDependencies___version = 'pluginCreator___packageJson___peerDependencies___version',
-  pluginCreator___packageJson___keywords = 'pluginCreator___packageJson___keywords',
-  pluginCreatorId = 'pluginCreatorId',
-  componentPath = 'componentPath'
+  internal___type = 'internal___type'
 }
 
 export type SitePageFilterInput = {
@@ -13817,15 +13853,15 @@ export type SitePageFilterInput = {
   internalComponentName?: Maybe<StringQueryOperatorInput>;
   componentChunkName?: Maybe<StringQueryOperatorInput>;
   matchPath?: Maybe<StringQueryOperatorInput>;
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
   isCreatedByStatefulCreatePages?: Maybe<BooleanQueryOperatorInput>;
   context?: Maybe<SitePageContextFilterInput>;
   pluginCreator?: Maybe<SitePluginFilterInput>;
   pluginCreatorId?: Maybe<StringQueryOperatorInput>;
   componentPath?: Maybe<StringQueryOperatorInput>;
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
 };
 
 export type SitePageGroupConnection = {
@@ -13987,13 +14023,14 @@ export enum SitePluginFieldsEnum {
   pluginOptions___jsxPragma = 'pluginOptions___jsxPragma',
   pluginOptions___stylesProvider___injectFirst = 'pluginOptions___stylesProvider___injectFirst',
   pluginOptions___modules = 'pluginOptions___modules',
-  pluginOptions___siteUrl = 'pluginOptions___siteUrl',
+  pluginOptions___name = 'pluginOptions___name',
   pluginOptions___path = 'pluginOptions___path',
+  pluginOptions___siteUrl = 'pluginOptions___siteUrl',
+  pluginOptions___localeJsonSourceName = 'pluginOptions___localeJsonSourceName',
   pluginOptions___languages = 'pluginOptions___languages',
   pluginOptions___defaultLanguage = 'pluginOptions___defaultLanguage',
   pluginOptions___trackingId = 'pluginOptions___trackingId',
   pluginOptions___lang = 'pluginOptions___lang',
-  pluginOptions___name = 'pluginOptions___name',
   pluginOptions___short_name = 'pluginOptions___short_name',
   pluginOptions___description = 'pluginOptions___description',
   pluginOptions___start_url = 'pluginOptions___start_url',
@@ -14159,13 +14196,14 @@ export type SitePluginPluginOptions = {
   jsxPragma?: Maybe<Scalars['String']>;
   stylesProvider?: Maybe<SitePluginPluginOptionsStylesProvider>;
   modules?: Maybe<Array<Maybe<Scalars['String']>>>;
-  siteUrl?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
   path?: Maybe<Scalars['String']>;
+  siteUrl?: Maybe<Scalars['String']>;
+  localeJsonSourceName?: Maybe<Scalars['String']>;
   languages?: Maybe<Array<Maybe<Scalars['String']>>>;
   defaultLanguage?: Maybe<Scalars['String']>;
   trackingId?: Maybe<Scalars['String']>;
   lang?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
   short_name?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   start_url?: Maybe<Scalars['String']>;
@@ -14229,13 +14267,14 @@ export type SitePluginPluginOptionsFilterInput = {
   jsxPragma?: Maybe<StringQueryOperatorInput>;
   stylesProvider?: Maybe<SitePluginPluginOptionsStylesProviderFilterInput>;
   modules?: Maybe<StringQueryOperatorInput>;
-  siteUrl?: Maybe<StringQueryOperatorInput>;
+  name?: Maybe<StringQueryOperatorInput>;
   path?: Maybe<StringQueryOperatorInput>;
+  siteUrl?: Maybe<StringQueryOperatorInput>;
+  localeJsonSourceName?: Maybe<StringQueryOperatorInput>;
   languages?: Maybe<StringQueryOperatorInput>;
   defaultLanguage?: Maybe<StringQueryOperatorInput>;
   trackingId?: Maybe<StringQueryOperatorInput>;
   lang?: Maybe<StringQueryOperatorInput>;
-  name?: Maybe<StringQueryOperatorInput>;
   short_name?: Maybe<StringQueryOperatorInput>;
   description?: Maybe<StringQueryOperatorInput>;
   start_url?: Maybe<StringQueryOperatorInput>;
@@ -14458,10 +14497,7 @@ export type OssDataQuery = (
             { __typename?: 'File' }
             & { childImageSharp?: Maybe<(
               { __typename?: 'ImageSharp' }
-              & { fluid?: Maybe<(
-                { __typename?: 'ImageSharpFluid' }
-                & Pick<ImageSharpFluid, 'sizes' | 'src' | 'srcSet' | 'aspectRatio'>
-              )> }
+              & Pick<ImageSharp, 'gatsbyImageData'>
             )> }
           )> }
         )>, detail?: Maybe<(
@@ -14587,4 +14623,61 @@ export type BuildTimeDataQuery = (
     { __typename?: 'Site' }
     & Pick<Site, 'buildTime'>
   )> }
+);
+
+export type NotFoundPageQueryVariables = Exact<{
+  language: Scalars['String'];
+}>;
+
+
+export type NotFoundPageQuery = (
+  { __typename?: 'Query' }
+  & { locales: (
+    { __typename?: 'LocaleConnection' }
+    & { edges: Array<(
+      { __typename?: 'LocaleEdge' }
+      & { node: (
+        { __typename?: 'Locale' }
+        & Pick<Locale, 'ns' | 'data' | 'language'>
+      ) }
+    )> }
+  ) }
+);
+
+export type IndexPageQueryVariables = Exact<{
+  language: Scalars['String'];
+}>;
+
+
+export type IndexPageQuery = (
+  { __typename?: 'Query' }
+  & { locales: (
+    { __typename?: 'LocaleConnection' }
+    & { edges: Array<(
+      { __typename?: 'LocaleEdge' }
+      & { node: (
+        { __typename?: 'Locale' }
+        & Pick<Locale, 'ns' | 'data' | 'language'>
+      ) }
+    )> }
+  ) }
+);
+
+export type PrivacyPageQueryVariables = Exact<{
+  language: Scalars['String'];
+}>;
+
+
+export type PrivacyPageQuery = (
+  { __typename?: 'Query' }
+  & { locales: (
+    { __typename?: 'LocaleConnection' }
+    & { edges: Array<(
+      { __typename?: 'LocaleEdge' }
+      & { node: (
+        { __typename?: 'Locale' }
+        & Pick<Locale, 'ns' | 'data' | 'language'>
+      ) }
+    )> }
+  ) }
 );

@@ -1,7 +1,8 @@
 import React from 'react';
-import { PageProps } from 'gatsby';
+import { graphql, PageProps } from 'gatsby';
 import { useI18next } from 'gatsby-plugin-react-i18next';
 import { makeStyles, Container, Typography } from '@material-ui/core';
+import { IndexPageQuery } from '../types';
 import {
   Layout,
   Hello,
@@ -21,12 +22,12 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const home: React.FC<PageProps> = () => {
+const home: React.FC<PageProps<IndexPageQuery>> = () => {
   const { t } = useI18next();
   const classes = useStyles();
   return (
     <Layout>
-      <Container maxWidth="md" className={classes.container} component="section">
+      <Container maxWidth="lg" className={classes.container} component="section">
         <Hello />
       </Container>
       <Container maxWidth="lg" className={classes.container} component="section">
@@ -74,3 +75,18 @@ const home: React.FC<PageProps> = () => {
 };
 
 export default home;
+
+export const query = graphql`
+  query IndexPage($language: String!) {
+    # 原稿を取得する
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+    }
+  }
+`;
